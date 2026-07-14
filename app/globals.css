@@ -1,26 +1,286 @@
 @import "tailwindcss";
 
+/* Design tokens from Figma node 199:133 */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-blue: #062b72;
+  --color-dark-blue: #04173c;
+  --color-deep-navy: #071633;
+  --color-cream: #fff9ec;
+  --color-yellow: #fecd07;
+  --color-light-gray: #b2b7bd;
+  --color-text-muted: #383838;
+  --color-white: #ffffff;
+  --color-navy-ink: #001c51;
+  --color-services-bg: #042b77;
+  --color-services-panel: #04173c;
+  --color-services-deep: #020918;
+
+  --font-display: var(--font-alfabet), "Alfabet", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-body: var(--font-golos), "Golos Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  /* Type scale */
+  --text-h1: 60px;
+  --leading-h1: 55px;
+  --tracking-h1: -0.9px;
+
+  --text-h2: 48px;
+  --leading-h2: 52px;
+  --tracking-h2: -0.72px;
+
+  --text-h3: 39px;
+  --leading-h3: 1;
+  --tracking-h3: -0.585px;
+
+  --text-h4: 32px;
+  --leading-h4: 1;
+  --tracking-h4: -0.48px;
+
+  --text-h5: 26px;
+  --leading-h5: 1;
+  --tracking-h5: -0.39px;
+
+  --text-h6: 20px;
+  --leading-h6: 1;
+  --tracking-h6: -0.3px;
+
+  --text-eyebrow-1: 12px;
+  --text-eyebrow-2: 10px;
+
+  --text-body-1: 20px;
+  --leading-body-1: 28px;
+
+  --text-body-2: 16px;
+  --leading-body-2: 24px;
+
+  --text-body-3: 12px;
+  --leading-body-3: 18px;
+
+  --page-pad: 80px;
+  --page-pad-sm: 24px;
+  --max-width: 1512px;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-blue: var(--color-blue);
+  --color-dark-blue: var(--color-dark-blue);
+  --color-deep-navy: var(--color-deep-navy);
+  --color-cream: var(--color-cream);
+  --color-yellow: var(--color-yellow);
+  --color-light-gray: var(--color-light-gray);
+  --color-background: var(--color-cream);
+  --color-foreground: var(--color-blue);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-alfabet), "Alfabet", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-cream);
+  color: var(--color-blue);
+  font-family: var(--font-body);
+  margin: 0;
+  min-height: 100%;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Fill a sized parent frame without distortion.
+   Do not set position here — use `relative` or `absolute` on the element. */
+.frame {
+  overflow: hidden;
+}
+
+.frame > img,
+.frame-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Shared button / interactive control hovers */
+.btn {
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  background: var(--color-dark-blue);
+  color: var(--color-white);
+}
+
+.btn-primary:hover {
+  background: var(--color-blue);
+}
+
+.btn-light {
+  background: var(--color-white);
+  color: var(--color-dark-blue);
+}
+
+.btn-light:hover {
+  background: var(--color-cream);
+}
+
+.btn-outline {
+  border: 1px solid var(--color-dark-blue);
+  background: transparent;
+  color: var(--color-dark-blue);
+}
+
+.btn-outline:hover {
+  background: var(--color-dark-blue);
+  color: var(--color-white);
+}
+
+.btn-yellow {
+  background: var(--color-yellow);
+  color: var(--color-blue);
+}
+
+.btn-yellow:hover {
+  background: #e6b800;
+}
+
+.btn-pill-active {
+  background: var(--color-dark-blue);
+  color: var(--color-white);
+}
+
+.btn-pill-active:hover {
+  background: var(--color-blue);
+}
+
+.btn-pill {
+  border: 1px solid var(--color-blue);
+  background: transparent;
+  color: var(--color-blue);
+}
+
+.btn-pill:hover {
+  background: var(--color-dark-blue);
+  color: var(--color-white);
+}
+
+/* Typography utilities */
+.type-h1 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(36px, 5vw, var(--text-h1));
+  line-height: 1.05;
+  letter-spacing: var(--tracking-h1);
+}
+
+.type-h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(32px, 4vw, var(--text-h2));
+  line-height: var(--leading-h2);
+  letter-spacing: var(--tracking-h2);
+}
+
+.type-h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(28px, 3vw, var(--text-h3));
+  line-height: 1.15;
+  letter-spacing: var(--tracking-h3);
+}
+
+.type-h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(24px, 2.5vw, var(--text-h4));
+  line-height: 1.15;
+  letter-spacing: var(--tracking-h4);
+}
+
+.type-h5 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--text-h5);
+  line-height: 1.15;
+  letter-spacing: var(--tracking-h5);
+}
+
+.type-h6 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--text-h6);
+  line-height: 1.15;
+  letter-spacing: var(--tracking-h6);
+}
+
+.type-eyebrow {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--text-eyebrow-1);
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+}
+
+.type-body-1 {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: clamp(16px, 1.4vw, var(--text-body-1));
+  line-height: var(--leading-body-1);
+}
+
+.type-body-2 {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--text-body-2);
+  line-height: var(--leading-body-2);
+}
+
+.type-body-3 {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--text-body-3);
+  line-height: var(--leading-body-3);
+}
+
+.page-pad {
+  padding-left: var(--page-pad-sm);
+  padding-right: var(--page-pad-sm);
+}
+
+@media (min-width: 768px) {
+  .page-pad {
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .page-pad {
+    padding-left: var(--page-pad);
+    padding-right: var(--page-pad);
+  }
 }
