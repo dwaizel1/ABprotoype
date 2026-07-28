@@ -3,16 +3,17 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { useContactDrawer } from "@/components/ContactDrawer";
 import { primaryNav } from "@/lib/nav";
 
 type SiteHeaderProps = {
   variant?: "overlay" | "solid";
 };
 
-export function SiteHeader({ variant = "solid" }: SiteHeaderProps) {
+export function SiteHeader({ variant: _variant = "solid" }: SiteHeaderProps) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const overlay = variant === "overlay";
+  const { openContact } = useContactDrawer();
 
   return (
     <header className="absolute top-0 left-0 right-0 z-50 bg-[var(--color-dark-blue)] text-white shadow-[0_1px_0_rgba(255,255,255,0.08)]">
@@ -43,14 +44,13 @@ export function SiteHeader({ variant = "solid" }: SiteHeaderProps) {
               </Link>
             );
           })}
-          <Link
-            href="/#contact"
-            className={`btn btn-light inline-flex h-11 items-center rounded-full px-6 text-[15px] font-medium ${
-              overlay ? "" : ""
-            }`}
+          <button
+            type="button"
+            onClick={openContact}
+            className="btn btn-light inline-flex h-11 items-center rounded-full px-6 text-[15px] font-medium"
           >
             Connect →
-          </Link>
+          </button>
         </nav>
 
         <button
@@ -91,13 +91,16 @@ export function SiteHeader({ variant = "solid" }: SiteHeaderProps) {
                 {item.label}
               </Link>
             ))}
-            <Link
-              href="/#contact"
+            <button
+              type="button"
               className="btn btn-yellow mt-3 inline-flex h-12 w-fit items-center rounded-full px-6 text-[16px] font-medium"
-              onClick={() => setOpen(false)}
+              onClick={() => {
+                setOpen(false);
+                openContact();
+              }}
             >
               Connect →
-            </Link>
+            </button>
           </nav>
         </div>
       )}

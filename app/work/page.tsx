@@ -1,15 +1,29 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { Suspense, useEffect, useMemo, useState } from "react";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { projects } from "@/lib/projects";
 
 const filters = ["All", "Federal", "Municipal", "Energy", "Commercial", "Industrial"] as const;
 
-export default function WorkPage() {
-  const [activeFilter, setActiveFilter] = useState<(typeof filters)[number]>("All");
+type Filter = (typeof filters)[number];
+
+function isFilter(value: string | null): value is Filter {
+  return !!value && (filters as readonly string[]).includes(value);
+}
+
+function WorkPageContent() {
+  const searchParams = useSearchParams();
+  const typeParam = searchParams.get("type");
+  const initialFilter: Filter = isFilter(typeParam) ? typeParam : "All";
+  const [activeFilter, setActiveFilter] = useState<Filter>(initialFilter);
+
+  useEffect(() => {
+    setActiveFilter(isFilter(typeParam) ? typeParam : "All");
+  }, [typeParam]);
 
   const filtered = useMemo(() => {
     if (activeFilter === "All") return projects;
@@ -17,12 +31,7 @@ export default function WorkPage() {
   }, [activeFilter]);
 
   return (
-    <div className="bg-[var(--color-cream)] min-h-screen">
-      <div className="relative">
-        <SiteHeader variant="solid" />
-        <div className="h-[76px] md:h-[84px]" />
-      </div>
-
+    <>
       <section className="page-pad pt-16 pb-10 md:pt-24">
         <p className="type-eyebrow text-[var(--color-blue)]">OUR WORK</p>
         <h1 className="type-h1 mt-3 max-w-[900px] text-[var(--color-blue)]">
@@ -126,6 +135,21 @@ export default function WorkPage() {
           </>
         )}
       </section>
+    </>
+  );
+}
+
+export default function WorkPage() {
+  return (
+    <div className="bg-[var(--color-cream)] min-h-screen">
+      <div className="relative">
+        <SiteHeader variant="solid" />
+        <div className="h-[76px] md:h-[84px]" />
+      </div>
+
+      <Suspense fallback={null}>
+        <WorkPageContent />
+      </Suspense>
 
       <SiteFooter />
     </div>

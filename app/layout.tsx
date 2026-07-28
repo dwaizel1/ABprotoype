@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Golos_Text } from "next/font/google";
+import { Providers } from "@/components/Providers";
 import "./globals.css";
 
 const alfabet = localFont({
@@ -56,7 +57,7 @@ export default function RootLayout({
       className={`${alfabet.variable} ${golos.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-[family-name:var(--font-golos)]">
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

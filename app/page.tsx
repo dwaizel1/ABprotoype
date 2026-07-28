@@ -2,36 +2,11 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { useContactDrawer } from "@/components/ContactDrawer";
+import { ImpactMap } from "@/components/ImpactMap";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
-
-const industries = [
-  {
-    id: "01",
-    name: "Federal",
-    desc: "Defense, military construction, civil works, and federal infrastructure — built to the most demanding standards.",
-    image: "/images/home/industry.jpg",
-  },
-  {
-    id: "02",
-    name: "Power & Energy",
-    desc: "Utilities and energy infrastructure delivered with schedule certainty and operational reliability.",
-    image: "/images/home/service-4.jpg",
-  },
-  {
-    id: "03",
-    name: "Municipalities",
-    desc: "Civic facilities and public works built for the communities that depend on them.",
-    image: "/images/home/service-2.jpg",
-  },
-  {
-    id: "04",
-    name: "Industrial & Commercial",
-    desc: "Complex industrial and commercial builds from ground-up to renovation.",
-    image: "/images/home/service-1.jpg",
-  },
-];
-
+import { industries } from "@/lib/industries";
 const services = [
   {
     title: "Design Build & EPC",
@@ -82,13 +57,10 @@ const values = [
   },
 ];
 
-const mapFilters = ["Nationwide", "West Coast", "East Coast", "Elsewhere"];
-
 export default function HomePage() {
   const [activeIndustry, setActiveIndustry] = useState(0);
-  const [activeFilter, setActiveFilter] = useState(0);
   const [serviceIndex, setServiceIndex] = useState(0);
-
+  const { openContact } = useContactDrawer();
   return (
     <div className="bg-[var(--color-cream)]">
       <SiteHeader variant="overlay" />
@@ -126,12 +98,13 @@ export default function HomePage() {
             >
               See Our Work →
             </Link>
-            <Link
-              href="/#contact"
+            <button
+              type="button"
+              onClick={openContact}
               className="text-[14.7px] text-white transition-opacity hover:opacity-70"
             >
               Connect →
-            </Link>
+            </button>
           </div>
         </div>
       </section>
@@ -227,7 +200,7 @@ export default function HomePage() {
                         </p>
                         {active && (
                           <p className="mt-3 max-w-[302px] text-[14px] leading-[22px] text-[var(--color-dark-blue)]">
-                            {ind.desc}
+                            {ind.summary}
                           </p>
                         )}
                       </div>
@@ -242,7 +215,7 @@ export default function HomePage() {
               })}
             </ul>
             <Link
-              href="/work"
+              href="/industries"
               className="btn btn-primary mt-8 inline-flex h-[52px] items-center rounded-full px-6 text-[18px]"
             >
               See Our Industries
@@ -278,37 +251,14 @@ export default function HomePage() {
       </section>
 
       {/* Impact / Map */}
-      <section className="bg-[#f5f4ed]">
-        <div className="page-pad py-16 md:py-24">
+      <section id="impact" className="bg-[#f5f4ed]">
+        <div className="page-pad pt-16 pb-8 md:pt-24 md:pb-10">
           <p className="type-eyebrow text-[#262626]">OUR IMPACT</p>
           <h2 className="type-h2 mt-2 max-w-[1108px] capitalize text-[var(--color-dark-blue)]">
             1,000+ Projects Successfully Completed Nationwide
           </h2>
-          <div className="mt-12 flex flex-col gap-10 lg:flex-row lg:items-start">
-            <div className="flex flex-row flex-wrap gap-3 lg:w-[139px] lg:flex-col lg:gap-4">
-              {mapFilters.map((f, i) => (
-                <button
-                  key={f}
-                  type="button"
-                  onClick={() => setActiveFilter(i)}
-                  className={`btn h-[37px] rounded-full px-4 text-[13px] ${
-                    i === activeFilter ? "btn-pill-active" : "btn-outline"
-                  }`}
-                >
-                  {f}
-                </button>
-              ))}
-            </div>
-            <div className="frame relative min-h-[280px] flex-1 md:min-h-[480px]">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/images/home/map.png"
-                alt="Project locations across the United States"
-                className="!object-contain"
-              />
-            </div>
-          </div>
         </div>
+        <ImpactMap />
       </section>
 
       {/* Values */}

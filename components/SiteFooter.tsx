@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useContactDrawer } from "@/components/ContactDrawer";
 import { footerNav } from "@/lib/nav";
 
 type SiteFooterProps = {
@@ -6,6 +9,8 @@ type SiteFooterProps = {
 };
 
 export function SiteFooter({ showCta = true }: SiteFooterProps) {
+  const { openContact } = useContactDrawer();
+
   return (
     <footer id="contact" className="bg-[var(--color-yellow)] text-[var(--color-dark-blue)]">
       {showCta && (
@@ -15,12 +20,13 @@ export function SiteFooter({ showCta = true }: SiteFooterProps) {
             <br />
             ground? Let&apos;s talk.
           </h2>
-          <Link
-            href="mailto:sales@andersonburton.com"
+          <button
+            type="button"
+            onClick={openContact}
             className="btn btn-primary inline-flex h-[56px] shrink-0 items-center justify-center px-8 type-body-2"
           >
             Contact Us →
-          </Link>
+          </button>
         </div>
       )}
 
@@ -35,11 +41,22 @@ export function SiteFooter({ showCta = true }: SiteFooterProps) {
           className="flex flex-wrap gap-x-5 gap-y-3 type-body-2"
           aria-label="Footer"
         >
-          {footerNav.map((item) => (
-            <Link key={item.label} href={item.href} className="hover:opacity-70">
-              {item.label}
-            </Link>
-          ))}
+          {footerNav.map((item) =>
+            item.label === "Contact" ? (
+              <button
+                key={item.label}
+                type="button"
+                onClick={openContact}
+                className="hover:opacity-70"
+              >
+                {item.label}
+              </button>
+            ) : (
+              <Link key={item.label} href={item.href} className="hover:opacity-70">
+                {item.label}
+              </Link>
+            ),
+          )}
         </nav>
       </div>
 
