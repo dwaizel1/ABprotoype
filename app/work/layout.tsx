@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Work | Anderson Burton",
+  title: "Work",
   description:
-    "Key projects across federal, energy, municipal, and industrial construction.",
+    "Projects that prove what ownership looks like on the ground — federal, energy, municipal, and industrial construction.",
 };
 
 export default function WorkLayout({

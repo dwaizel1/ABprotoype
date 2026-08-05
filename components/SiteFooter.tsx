@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useContactDrawer } from "@/components/ContactDrawer";
-import { footerNav } from "@/lib/nav";
+import { primaryNav } from "@/lib/nav";
 
 type SiteFooterProps = {
   showCta?: boolean;
@@ -23,7 +23,7 @@ export function SiteFooter({ showCta = true }: SiteFooterProps) {
           <button
             type="button"
             onClick={openContact}
-            className="btn btn-primary inline-flex h-[56px] shrink-0 items-center justify-center px-8 type-body-2"
+            className="btn btn-primary inline-flex h-[56px] shrink-0 items-center justify-center rounded-full px-8 type-body-2"
           >
             Contact Us →
           </button>
@@ -41,22 +41,22 @@ export function SiteFooter({ showCta = true }: SiteFooterProps) {
           className="flex flex-wrap gap-x-5 gap-y-3 type-body-2"
           aria-label="Footer"
         >
-          {footerNav.map((item) =>
-            item.label === "Contact" ? (
-              <button
-                key={item.label}
-                type="button"
-                onClick={openContact}
-                className="hover:opacity-70"
-              >
-                {item.label}
-              </button>
-            ) : (
-              <Link key={item.label} href={item.href} className="hover:opacity-70">
-                {item.label}
-              </Link>
-            ),
-          )}
+          {primaryNav.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="hover:opacity-70"
+            >
+              {item.label}
+            </Link>
+          ))}
+          <button
+            type="button"
+            onClick={openContact}
+            className="hover:opacity-70"
+          >
+            Contact
+          </button>
         </nav>
       </div>
 

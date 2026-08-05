@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { useContactDrawer } from "@/components/ContactDrawer";
 import { ImpactMap } from "@/components/ImpactMap";
+import { LogoMarquee } from "@/components/LogoMarquee";
+import { ServicesCarousel } from "@/components/ServicesCarousel";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { industries } from "@/lib/industries";
@@ -11,23 +12,23 @@ const services = [
   {
     title: "Design Build & EPC",
     desc: "Defense, military construction, civil works, and federal infrastructure — built to the most demanding standards.",
-    image: "/images/home/service-1.jpg",
-    label: "Name of Project",
+    image: "/images/home/service-2.jpg",
+    label: "New Cuyama Fire Station, Santa Barbara",
   },
   {
-    title: "Commercial",
+    title: "Commercial Construction",
     desc: "Defense, military construction, civil works, and federal infrastructure — built to the most demanding standards.",
-    image: "/images/home/service-2.jpg",
-    label: "Name of Project",
+    image: "/images/home/service-1.jpg",
+    label: "Harris Law Building, San Luis Obispo",
   },
   {
     title: "Historical Restoration",
     desc: "Defense, military construction, civil works, and federal infrastructure — built to the most demanding standards.",
     image: "/images/home/service-3.jpg",
-    label: "Name of Project",
+    label: "USS Maine Memorial, Arlington National Cemetery",
   },
   {
-    title: "Federal",
+    title: "Operations & Maintenance",
     desc: "Defense, military construction, civil works, and federal infrastructure — built to the most demanding standards.",
     image: "/images/home/service-4.jpg",
     label: "Name of Project",
@@ -36,31 +37,29 @@ const services = [
 
 const values = [
   {
-    n: "01",
     title: "Safety",
-    body: "0.0 DART rate. 0.55 EMR. Every person has stop-work authority.",
+    body: "Every person has stop-work authority. We protect people first—on every site, every shift.",
   },
   {
-    n: "02",
-    title: "Community",
-    body: "Giving back to the communities supporting us.",
+    title: "Quality",
+    body: "We build to last. Craft, materials, and documentation meet the standard the work demands.",
   },
   {
-    n: "03",
-    title: "Sustainability",
-    body: "Designed for longevity. LEED certified. Built to last.",
+    title: "Integrity",
+    body: "We say what we mean and deliver what we promise—openly with clients, partners, and each other.",
   },
   {
-    n: "04",
-    title: "Innovation",
-    body: "Drone monitoring. 3D imaging. Carbon procurement.",
+    title: "Accountability",
+    body: "Employee-owned means the people on your job own the outcome. Responsibility stays close to the work.",
+  },
+  {
+    title: "Stewardship",
+    body: "We care for the communities, environments, and resources entrusted to us—during construction and after.",
   },
 ];
 
 export default function HomePage() {
   const [activeIndustry, setActiveIndustry] = useState(0);
-  const [serviceIndex, setServiceIndex] = useState(0);
-  const { openContact } = useContactDrawer();
   return (
     <div className="bg-[var(--color-cream)]">
       <SiteHeader variant="overlay" />
@@ -89,22 +88,15 @@ export default function HomePage() {
           </h1>
           <p className="mt-8 max-w-[585px] text-[clamp(16px,1.3vw,18.9px)] leading-[1.67] font-light text-white">
             Employee-owned. Safety-first. Trusted by the U.S. federal government,
-            power utilities, and municipalities for over 25 years.
+            power utilities, and municipalities for over 27 years.
           </p>
-          <div className="mt-8 flex flex-wrap items-center gap-6">
+          <div className="mt-8">
             <Link
               href="/work"
               className="btn btn-light inline-flex h-[55px] items-center rounded-full px-8 text-[14.7px] font-medium"
             >
               See Our Work →
             </Link>
-            <button
-              type="button"
-              onClick={openContact}
-              className="text-[14.7px] text-white transition-opacity hover:opacity-70"
-            >
-              Connect →
-            </button>
           </div>
         </div>
       </section>
@@ -118,59 +110,7 @@ export default function HomePage() {
         </p>
       </section>
 
-      {/* Our Services */}
-      <section className="page-pad pb-20 md:pb-28">
-        <div className="mb-8 flex items-end justify-between gap-4">
-          <h2 className="type-h2 capitalize text-[var(--color-dark-blue)]">
-            Our Services
-          </h2>
-          <div className="hidden gap-3 md:flex">
-            <button
-              type="button"
-              aria-label="Previous services"
-              className="btn btn-outline flex size-12 items-center justify-center rounded-full"
-              onClick={() =>
-                setServiceIndex((i) => (i - 1 + services.length) % services.length)
-              }
-            >
-              ←
-            </button>
-            <button
-              type="button"
-              aria-label="Next services"
-              className="btn btn-outline flex size-12 items-center justify-center rounded-full"
-              onClick={() => setServiceIndex((i) => (i + 1) % services.length)}
-            >
-              →
-            </button>
-          </div>
-        </div>
-
-        <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory md:gap-[17px]">
-          {services.map((s, i) => (
-            <div
-              key={s.title}
-              className={`w-[min(85vw,431px)] shrink-0 snap-start transition-opacity ${
-                i < serviceIndex ? "md:opacity-40" : ""
-              }`}
-            >
-              <div className="frame relative aspect-square rounded-[21px] bg-[#a66161]">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={s.image} alt="" />
-                <span className="absolute left-5 top-6 z-10 rounded-[14px] bg-white/60 px-7 py-3 text-[11px] font-semibold tracking-tight text-[var(--color-dark-blue)] backdrop-blur-md">
-                  {s.label}
-                </span>
-              </div>
-              <h3 className="mt-6 text-[clamp(28px,2.5vw,38px)] leading-[1] tracking-[-1.14px] text-[var(--color-dark-blue)]">
-                {s.title}
-              </h3>
-              <p className="mt-3.5 max-w-[394px] text-[14px] leading-[22px] text-[var(--color-dark-blue)]">
-                {s.desc}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ServicesCarousel services={services} />
 
       {/* Our Industries */}
       <section className="page-pad pb-0">
@@ -232,7 +172,7 @@ export default function HomePage() {
       <section className="mt-16 bg-[var(--color-dark-blue)] text-[#f7f5f0] md:mt-20">
         <div className="page-pad grid grid-cols-2 gap-8 py-16 md:grid-cols-4 md:py-[147px]">
           {[
-            { value: "25", label: "Years in business" },
+            { value: "27", label: "Years in business" },
             { value: "1-30mil", label: "Typical Project Size" },
             { value: "ESOP", label: "Employee Owned" },
             { value: "0.55", label: "Safety Record" },
@@ -250,6 +190,8 @@ export default function HomePage() {
         </div>
       </section>
 
+      <LogoMarquee />
+
       {/* Impact / Map */}
       <section id="impact" className="bg-[#f5f4ed]">
         <div className="page-pad pt-16 pb-8 md:pt-24 md:pb-10">
@@ -264,30 +206,31 @@ export default function HomePage() {
       {/* Values */}
       <section className="bg-[var(--color-dark-blue)] text-white">
         <div className="page-pad py-16 md:py-24">
-          <p className="type-eyebrow text-[var(--color-yellow)]">OUR VALUES</p>
+          <p className="type-eyebrow text-[var(--color-yellow)]">Our Values</p>
           <h2 className="type-h2 mt-2 max-w-[856px] capitalize">
-            Built on four
-            <br />
-            non-negotiables
+            5 key values
           </h2>
           <div className="frame relative mt-12 h-[240px] rounded-[20px] md:h-[388px]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/images/home/values.jpg" alt="" />
           </div>
-          <div className="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="mt-16 border-t border-white/40">
             {values.map((v) => (
-              <div
-                key={v.n}
-                className="border-l border-white/40 pl-6 lg:border-l lg:pl-7"
+              <li
+                key={v.title}
+                className="border-b border-white/40 py-6 md:py-8"
               >
-                <p className="text-[72px] leading-none">{v.n}</p>
-                <h3 className="mt-6 text-[22px]">{v.title}</h3>
-                <p className="mt-3 max-w-[302px] text-[14px] leading-[22px] text-white/60">
-                  {v.body}
-                </p>
-              </div>
+                <div className="flex flex-col gap-3 md:flex-row md:items-baseline md:justify-between md:gap-12">
+                  <h3 className="text-[clamp(28px,3vw,40px)] font-medium leading-none tracking-[-0.02em]">
+                    {v.title}
+                  </h3>
+                  <p className="max-w-[460px] text-[14px] leading-[22px] text-white/60 md:text-right">
+                    {v.body}
+                  </p>
+                </div>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 

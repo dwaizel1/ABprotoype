@@ -48,7 +48,7 @@ export default function IndustriesPage() {
               href={`#${industry.slug}`}
               className="btn btn-outline inline-flex h-10 items-center rounded-full px-5 text-[13px]"
             >
-              {industry.shortName}
+              {industry.name}
             </a>
           ))}
         </nav>

@@ -16,7 +16,7 @@ export function SiteHeader({ variant: _variant = "solid" }: SiteHeaderProps) {
   const { openContact } = useContactDrawer();
 
   return (
-    <header className="absolute top-0 left-0 right-0 z-50 bg-[var(--color-dark-blue)] text-white shadow-[0_1px_0_rgba(255,255,255,0.08)]">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-[var(--color-dark-blue)] text-white shadow-[0_1px_0_rgba(255,255,255,0.08)]">
       <div className="page-pad flex h-[76px] items-center justify-between md:h-[84px]">
         <Link
           href="/"
@@ -32,6 +32,7 @@ export function SiteHeader({ variant: _variant = "solid" }: SiteHeaderProps) {
               item.href === "/"
                 ? pathname === "/"
                 : pathname.startsWith(item.href);
+
             return (
               <Link
                 key={item.href}
