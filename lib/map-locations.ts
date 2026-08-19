@@ -1,4 +1,4 @@
-export type MapRegion = "West Coast" | "East Coast" | "Elsewhere";
+export type MapRegion = "West Coast" | "East Coast" | "Elsewhere" | "Alaska";
 
 export type MapLocation = {
   id: string;
@@ -207,6 +207,16 @@ export const mapLocations: MapLocation[] = [
     lng: -157.8583,
     summary: "Federal facilities work supporting Pacific operations.",
   },
+  {
+    id: "anchorage",
+    name: "Alaska Federal Operations Hub",
+    location: "Anchorage, AK",
+    type: "Federal",
+    region: "Alaska",
+    lat: 61.2181,
+    lng: -149.9003,
+    summary: "Remote federal facilities support and infrastructure upgrades.",
+  },
 ];
 
 export const mapFilterOptions = [
@@ -214,6 +224,7 @@ export const mapFilterOptions = [
   "West Coast",
   "East Coast",
   "Elsewhere",
+  "Alaska",
 ] as const;
 
 export type MapFilter = (typeof mapFilterOptions)[number];

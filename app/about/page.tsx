@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { AwardsSection } from "@/components/AwardsSection";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { projects } from "@/lib/projects";
@@ -163,28 +164,30 @@ export default function AboutPage() {
         <h2 className="type-h2 mb-10 text-[var(--color-blue)]">Our Team</h2>
         <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 lg:gap-5">
           {team.map((member) => (
-            <div key={member.id} className="group relative">
+            <div key={member.id} className="group">
               <div className="frame relative aspect-square overflow-hidden rounded-[15px]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={`/images/about/${member.id}.jpg`}
                   alt={member.name}
                 />
-              </div>
-              <div className="pointer-events-none absolute top-full right-0 left-0 z-10 pt-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                <div className="rounded-[10px] bg-[var(--color-dark-blue)] px-3.5 py-2.5 text-white shadow-[0_8px_24px_rgba(4,23,60,0.2)]">
-                  <p className="text-[14px] font-medium leading-tight">
-                    {member.name}
-                  </p>
-                  <p className="mt-0.5 text-[12px] leading-tight text-white/65">
-                    {member.role}
-                  </p>
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 p-3 opacity-0 transition-all duration-300 group-hover:opacity-100">
+                  <div className="translate-y-2 rounded-[10px] bg-[var(--color-dark-blue)]/95 px-3.5 py-2.5 text-white shadow-[0_8px_24px_rgba(4,23,60,0.2)] transition-transform duration-300 group-hover:translate-y-0">
+                    <p className="text-[14px] font-medium leading-tight">
+                      {member.name}
+                    </p>
+                    <p className="mt-0.5 text-[12px] leading-tight text-white/65">
+                      {member.role}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
           ))}
         </div>
       </section>
+
+      <AwardsSection />
 
       <SiteFooter />
     </div>

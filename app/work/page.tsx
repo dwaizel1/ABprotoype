@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useMemo, useState } from "react";
+import { AwardsSection } from "@/components/AwardsSection";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { projects } from "@/lib/projects";
@@ -186,6 +187,8 @@ function WorkPageContent() {
           </ul>
         )}
       </section>
+
+      <AwardsSection />
     </>
   );
 }

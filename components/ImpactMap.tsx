@@ -19,6 +19,8 @@ const EAST_CENTER: [number, number] = [38.5, -77.5];
 const EAST_ZOOM = 5;
 const ELSEWHERE_CENTER: [number, number] = [36.5, -100];
 const ELSEWHERE_ZOOM = 4.2;
+const ALASKA_CENTER: [number, number] = [63.5, -151.2];
+const ALASKA_ZOOM = 3.8;
 
 function viewForFilter(filter: MapFilter): {
   center: [number, number];
@@ -31,6 +33,8 @@ function viewForFilter(filter: MapFilter): {
       return { center: EAST_CENTER, zoom: EAST_ZOOM };
     case "Elsewhere":
       return { center: ELSEWHERE_CENTER, zoom: ELSEWHERE_ZOOM };
+    case "Alaska":
+      return { center: ALASKA_CENTER, zoom: ALASKA_ZOOM };
     default:
       return { center: US_CENTER, zoom: US_ZOOM };
   }

@@ -40,7 +40,7 @@ export function KeyServicesPage({ services }: { services: KeyService[] }) {
                   className={`btn text-left text-[clamp(22px,2.2vw,32px)] font-medium leading-[1.15] tracking-[-0.02em] transition-colors ${
                     active
                       ? "text-[var(--color-dark-blue)]"
-                      : "text-[var(--color-yellow)] hover:text-[var(--color-dark-blue)]"
+                      : "text-[#B3B5B7] hover:text-[var(--color-dark-blue)]"
                   }`}
                   aria-current={active ? "page" : undefined}
                 >
