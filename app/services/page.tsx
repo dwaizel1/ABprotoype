@@ -107,66 +107,74 @@ export default function ServicesPage() {
             const isOpen = openId === service.id;
             return (
               <li key={service.id} className="relative">
-                <button
-                  type="button"
-                  className={`btn flex w-full items-center justify-between gap-6 py-8 text-left md:py-10 ${
+                <div
+                  className={
                     isOpen
-                      ? "rounded-[43px] bg-[var(--color-services-panel)] px-6 shadow-[0_12px_97px_rgba(0,0,0,0.25)] md:px-10"
-                      : "hover:bg-white/5 rounded-[24px] px-2 md:px-4"
-                  }`}
-                  onClick={() => setOpenId(isOpen ? "" : service.id)}
-                  aria-expanded={isOpen}
+                      ? "overflow-hidden rounded-[43px] bg-[var(--color-services-panel)] shadow-[0_12px_97px_rgba(0,0,0,0.25)]"
+                      : undefined
+                  }
                 >
-                  <div className="flex flex-1 flex-col gap-4 sm:flex-row sm:items-center sm:justify-between sm:gap-10">
-                    <span
-                      className={`font-[family-name:var(--font-display)] font-medium tracking-[-0.05em] ${
-                        isOpen ? "text-white" : "text-white/50"
-                      }`}
-                      style={{
-                        fontSize: "clamp(64px, 8vw, 120px)",
-                        lineHeight: 1,
-                      }}
-                    >
-                      {service.id}
-                    </span>
-                    <span
-                      className="font-[family-name:var(--font-display)] font-bold tracking-[-0.05em] sm:ml-auto"
-                      style={{
-                        fontSize: "clamp(28px, 3.8vw, 56px)",
-                        lineHeight: 1.12,
-                      }}
-                    >
-                      {service.title}
-                    </span>
-                  </div>
-                  <span className="shrink-0 text-2xl" aria-hidden>
-                    →
-                  </span>
-                </button>
-
-                {isOpen && (
-                  <div className="-mt-2 rounded-b-[43px] bg-[var(--color-services-panel)] px-6 pb-12 md:px-10 md:pb-16">
-                    <div className="ml-0 grid gap-10 md:ml-[auto] md:max-w-[860px] md:grid-cols-2 md:gap-12">
-                      {service.columns.map((col) => (
-                        <div key={col.heading}>
-                          <div className="flex items-center gap-4 border-b border-white/40 pb-3">
-                            <span className="text-[24px]" aria-hidden>
-                              {col.icon}
-                            </span>
-                            <h3 className="font-[family-name:var(--font-display)] text-[25px] tracking-[-1.25px]">
-                              {col.heading}
-                            </h3>
-                          </div>
-                          <div className="mt-5 space-y-4 type-body-2 leading-[21px] text-white/95">
-                            {col.paragraphs.map((p) => (
-                              <p key={p.slice(0, 32)}>{p}</p>
-                            ))}
-                          </div>
-                        </div>
-                      ))}
+                  <button
+                    type="button"
+                    className={`btn flex w-full items-center justify-between gap-6 py-8 text-left md:py-10 ${
+                      isOpen
+                        ? "px-6 md:px-10"
+                        : "rounded-[24px] px-2 hover:bg-white/5 md:px-4"
+                    }`}
+                    onClick={() => setOpenId(isOpen ? "" : service.id)}
+                    aria-expanded={isOpen}
+                  >
+                    <div className="flex flex-1 flex-col gap-4 sm:flex-row sm:items-center sm:justify-between sm:gap-10">
+                      <span
+                        className={`font-[family-name:var(--font-display)] font-medium tracking-[-0.05em] ${
+                          isOpen ? "text-white" : "text-white/50"
+                        }`}
+                        style={{
+                          fontSize: "clamp(64px, 8vw, 120px)",
+                          lineHeight: 1,
+                        }}
+                      >
+                        {service.id}
+                      </span>
+                      <span
+                        className="font-[family-name:var(--font-display)] font-bold tracking-[-0.05em] sm:ml-auto"
+                        style={{
+                          fontSize: "clamp(28px, 3.8vw, 56px)",
+                          lineHeight: 1.12,
+                        }}
+                      >
+                        {service.title}
+                      </span>
                     </div>
-                  </div>
-                )}
+                    <span className="shrink-0 text-2xl" aria-hidden>
+                      →
+                    </span>
+                  </button>
+
+                  {isOpen && (
+                    <div className="px-6 pb-12 md:px-10 md:pb-16">
+                      <div className="ml-0 grid gap-10 md:ml-[auto] md:max-w-[860px] md:grid-cols-2 md:gap-12">
+                        {service.columns.map((col) => (
+                          <div key={col.heading}>
+                            <div className="flex items-center gap-4 border-b border-white/40 pb-3">
+                              <span className="text-[24px]" aria-hidden>
+                                {col.icon}
+                              </span>
+                              <h3 className="font-[family-name:var(--font-display)] text-[25px] tracking-[-1.25px]">
+                                {col.heading}
+                              </h3>
+                            </div>
+                            <div className="mt-5 space-y-4 type-body-2 leading-[21px] text-white/95">
+                              {col.paragraphs.map((p) => (
+                                <p key={p.slice(0, 32)}>{p}</p>
+                              ))}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
 
                 {!isOpen && <div className="border-b border-white/20" />}
               </li>

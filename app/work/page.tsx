@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useMemo, useState } from "react";
 import { AwardsSection } from "@/components/AwardsSection";
+import { ProjectCatalog } from "@/components/ProjectCatalog";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { projects } from "@/lib/projects";
@@ -187,6 +188,8 @@ function WorkPageContent() {
           </ul>
         )}
       </section>
+
+      <ProjectCatalog filter={activeFilter} />
 
       <AwardsSection />
     </>

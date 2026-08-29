@@ -142,16 +142,13 @@ export default function IndustriesPage() {
                   </div>
                 )}
 
-                <div className="mt-10 flex flex-wrap items-center gap-4">
+                <div className="mt-10">
                   <Link
                     href={`/work?type=${encodeURIComponent(industry.workFilter)}`}
                     className="btn btn-primary inline-flex h-[52px] items-center rounded-full px-7 text-[15px] font-medium"
                   >
                     View {industry.shortName} Work →
                   </Link>
-                  <ContactTrigger className="text-[15px] text-[var(--color-dark-blue)] transition-opacity hover:opacity-70">
-                    Connect →
-                  </ContactTrigger>
                 </div>
               </div>
             </div>

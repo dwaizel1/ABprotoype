@@ -65,15 +65,16 @@ export default function HomePage() {
       <SiteHeader variant="overlay" />
 
       {/* Hero */}
-      <section className="relative h-[min(982px,100svh)] min-h-[640px] overflow-hidden bg-black">
+      <section className="relative flex min-h-[640px] h-[min(982px,100svh)] flex-col overflow-hidden bg-black">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/images/home/hero.jpg"
-          alt="Santa Barbara County Fire Station 27 and Sheriff station at dusk"
+          alt="Aerial view of solar canopy installation over a parking lot during construction"
           className="absolute inset-0 h-full w-full max-w-none object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/25 to-black/35" />
-        <div className="page-pad relative z-10 flex h-full flex-col justify-end pb-16 pt-28 md:pb-24">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/30 to-black/40" />
+
+        <div className="page-pad relative z-10 flex flex-1 flex-col justify-end pt-28 pb-10 md:pb-12">
           <h1
             className="max-w-[788px] font-[family-name:var(--font-display)] font-semibold text-white"
             style={{
@@ -86,16 +87,43 @@ export default function HomePage() {
             <br />
             What Matters
           </h1>
-          <p className="mt-8 max-w-[585px] text-[clamp(16px,1.3vw,18.9px)] leading-[1.67] font-light text-white">
-            Employee-owned. Safety-first. Trusted by the U.S. federal government,
-            power utilities, and municipalities for over 27 years.
-          </p>
-          <div className="mt-8">
+
+          {/* Bottom strip */}
+          <div className="mt-12 grid items-end gap-8 border-t border-white/15 pt-8 md:mt-16 md:gap-10 lg:grid-cols-12 lg:gap-12 lg:pt-10">
+            <p className="max-w-[34rem] text-[15px] leading-[1.55] font-light text-white/90 md:text-[16px] lg:col-span-5 lg:justify-self-start">
+              Anderson Burton is the employee-owned Design Build and EPC partner
+              giving clients a safer, more accountable path through complex
+              construction.
+            </p>
+
             <Link
-              href="/work"
-              className="btn btn-light inline-flex h-[55px] items-center rounded-full px-8 text-[14.7px] font-medium"
+              href="/work/pinnacles-national-park"
+              className="group relative flex flex-col gap-4 rounded-[4px] bg-black/45 px-5 py-5 backdrop-blur-md transition hover:bg-black/55 md:px-6 md:py-6 lg:col-span-7 lg:col-start-6"
             >
-              See Our Work →
+              <span
+                className="absolute top-5 left-5 h-2 w-2 bg-[var(--color-yellow)] md:top-6 md:left-6"
+                aria-hidden
+              />
+              <div className="flex items-start justify-between gap-4 pl-5">
+                <p className="text-[10px] font-medium tracking-[0.14em] text-white/55 uppercase">
+                  Company News
+                </p>
+                <p className="text-[10px] font-medium tracking-[0.08em] text-white/55 uppercase">
+                  Aug 10, 2026
+                </p>
+              </div>
+              <div className="flex items-end justify-between gap-6 pl-5">
+                <p className="max-w-[28ch] text-[16px] leading-[1.35] font-medium text-white md:text-[18px]">
+                  Anderson Burton delivers LEED Platinum at Pinnacles National
+                  Park
+                </p>
+                <span
+                  className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/35 text-white transition group-hover:border-white group-hover:bg-white group-hover:text-[var(--color-dark-blue)]"
+                  aria-hidden
+                >
+                  →
+                </span>
+              </div>
             </Link>
           </div>
         </div>
@@ -113,7 +141,7 @@ export default function HomePage() {
       <ServicesCarousel services={services} />
 
       {/* Our Industries */}
-      <section className="page-pad pb-0">
+      <section className="page-pad pb-4 md:pb-6">
         <h2 className="type-h2 mb-10 capitalize text-[var(--color-dark-blue)] md:mb-12">
           Our Industries
         </h2>
@@ -126,29 +154,27 @@ export default function HomePage() {
                   <li key={ind.id} className="border-b border-[var(--color-dark-blue)]/40">
                     <button
                       type="button"
-                      className={`flex w-full items-start justify-between gap-4 py-5 text-left transition ${
-                        active ? "opacity-100" : "opacity-30"
+                      className={`group flex w-full items-start gap-4 py-5 text-left transition duration-300 ${
+                        active
+                          ? "opacity-100"
+                          : "opacity-30 hover:opacity-70"
                       }`}
                       onClick={() => setActiveIndustry(i)}
+                      onMouseEnter={() => setActiveIndustry(i)}
                     >
                       <div>
-                        <p className="text-[8.3px] tracking-[-0.25px] text-[var(--color-dark-blue)]">
+                        <p className="text-[13px] tracking-[-0.25px] text-[var(--color-dark-blue)]">
                           {ind.id}
                         </p>
-                        <p className="mt-2 text-[clamp(28px,2.5vw,38px)] leading-[1] tracking-[-1.14px] text-[var(--color-dark-blue)]">
+                        <p className="mt-2 text-[clamp(28px,2.5vw,38px)] leading-[1] tracking-[-1.14px] text-[var(--color-dark-blue)] transition-transform duration-300 group-hover:translate-x-0.5">
                           {ind.name}
                         </p>
                         {active && (
-                          <p className="mt-3 max-w-[302px] text-[14px] leading-[22px] text-[var(--color-dark-blue)]">
+                          <p className="mt-3 max-w-[302px] text-[16px] leading-[24px] text-[var(--color-dark-blue)]">
                             {ind.summary}
                           </p>
                         )}
                       </div>
-                      {active && (
-                        <span className="mt-8 text-[var(--color-dark-blue)]" aria-hidden>
-                          →
-                        </span>
-                      )}
                     </button>
                   </li>
                 );
@@ -168,38 +194,48 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Stats */}
-      <section className="mt-16 bg-[var(--color-dark-blue)] text-[#f7f5f0] md:mt-20">
-        <div className="page-pad grid grid-cols-2 gap-8 py-16 md:grid-cols-4 md:py-[147px]">
+      <LogoMarquee />
+
+      {/* Impact — stats + map (yellow / navy graphic style) */}
+      <section
+        id="impact"
+        className="bg-[var(--color-yellow)] text-[var(--color-dark-blue)]"
+      >
+        <div className="page-pad border-b border-[var(--color-dark-blue)] pt-14 pb-10 md:pt-20 md:pb-12">
+          <p className="type-eyebrow text-[var(--color-dark-blue)]/70">OUR IMPACT</p>
+          <h2 className="type-h2 mt-2 max-w-[1108px] capitalize text-[var(--color-dark-blue)]">
+            1,000+ Projects Successfully Completed Nationwide
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-2 border-b border-[var(--color-dark-blue)] md:grid-cols-4">
           {[
             { value: "27", label: "Years in business" },
             { value: "1-30mil", label: "Typical Project Size" },
             { value: "ESOP", label: "Employee Owned" },
             { value: "0.55", label: "Safety Record" },
-          ].map((stat) => (
-            <div key={stat.label}>
+          ].map((stat, i) => (
+            <div
+              key={stat.label}
+              className={`flex flex-col items-center justify-center px-4 py-10 text-center md:py-14 ${
+                i % 2 === 1 ? "border-l border-[var(--color-dark-blue)]" : ""
+              } ${i >= 2 ? "border-t border-[var(--color-dark-blue)] md:border-t-0" : ""} ${
+                i > 0 ? "md:border-l md:border-[var(--color-dark-blue)]" : ""
+              }`}
+            >
               <p
-                className="font-[family-name:var(--font-display)] tracking-[-0.03em]"
-                style={{ fontSize: "clamp(40px, 6vw, 88px)", lineHeight: 1.1 }}
+                className="font-[family-name:var(--font-display)] font-semibold tracking-[-0.03em] text-[var(--color-dark-blue)]"
+                style={{ fontSize: "clamp(36px, 5.5vw, 72px)", lineHeight: 1 }}
               >
                 {stat.value}
               </p>
-              <p className="mt-3 text-[14px] leading-[22px] text-white">{stat.label}</p>
+              <p className="mt-3 text-[13px] leading-[1.3] text-[var(--color-dark-blue)] md:text-[14px]">
+                {stat.label}
+              </p>
             </div>
           ))}
         </div>
-      </section>
 
-      <LogoMarquee />
-
-      {/* Impact / Map */}
-      <section id="impact" className="bg-[#f5f4ed]">
-        <div className="page-pad pt-16 pb-8 md:pt-24 md:pb-10">
-          <p className="type-eyebrow text-[#262626]">OUR IMPACT</p>
-          <h2 className="type-h2 mt-2 max-w-[1108px] capitalize text-[var(--color-dark-blue)]">
-            1,000+ Projects Successfully Completed Nationwide
-          </h2>
-        </div>
         <ImpactMap />
       </section>
 

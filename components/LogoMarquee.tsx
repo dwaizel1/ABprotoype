@@ -27,13 +27,13 @@ export function LogoMarquee({
 
   return (
     <section
-      className="logo-marquee relative overflow-hidden border-y border-[var(--color-dark-blue)]/10 bg-[#f3f1ea]"
+      className="logo-marquee relative my-14 overflow-hidden bg-[var(--color-cream)] md:my-20"
       aria-label={label}
     >
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[#f3f1ea] to-transparent md:w-24" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[#f3f1ea] to-transparent md:w-24" />
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[var(--color-cream)] to-transparent md:w-24" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[var(--color-cream)] to-transparent md:w-24" />
 
-      <div className="logo-marquee__track flex w-max items-center gap-10 py-10 md:gap-14 md:py-14">
+      <div className="logo-marquee__track flex w-max items-center gap-10 py-8 md:gap-14 md:py-10">
         {track.map((logo, i) => (
           <div key={`${logo.src}-${i}`} className="flex h-7 w-[120px] shrink-0 items-center justify-center md:h-9 md:w-[150px]">
             {/* eslint-disable-next-line @next/next/no-img-element */}

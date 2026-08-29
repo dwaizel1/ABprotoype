@@ -18,7 +18,7 @@ type ContactDrawerContextValue = {
   closeContact: () => void;
 };
 
-type Audience = "contractor" | "careers" | "investor";
+type Audience = "contractor" | "vendor" | "careers" | "investor";
 
 type FieldDef = {
   key: string;
@@ -55,7 +55,7 @@ const audienceOptions: {
         placeholder: "you@company.com",
         required: true,
       },
-      { key: "phone", label: "Phone", type: "tel", placeholder: "(805) 555-0100" },
+      { key: "phone", label: "Phone", type: "tel", placeholder: "805 555-0100" },
       {
         key: "company",
         label: "Company",
@@ -103,6 +103,64 @@ const audienceOptions: {
     ],
   },
   {
+    id: "vendor",
+    label: "Vendor",
+    description: "Supplier or manufacturer looking to work with us",
+    headline: "Tell us what you supply.",
+    mailto: "sales@andersonburton.com",
+    subjectPrefix: "Vendor inquiry",
+    fields: [
+      { key: "name", label: "Full name", placeholder: "Your name", required: true },
+      {
+        key: "email",
+        label: "Email",
+        type: "email",
+        placeholder: "you@company.com",
+        required: true,
+      },
+      { key: "phone", label: "Phone", type: "tel", placeholder: "805 555-0100" },
+      {
+        key: "company",
+        label: "Company",
+        placeholder: "Company name",
+        required: true,
+      },
+      {
+        key: "category",
+        label: "Product / material category",
+        placeholder: "Steel, MEP, finishes, equipment…",
+        required: true,
+      },
+      {
+        key: "regions",
+        label: "Regions you serve",
+        placeholder: "Central Coast, statewide, national…",
+        required: true,
+      },
+      {
+        key: "leadTime",
+        label: "Typical lead time",
+        type: "select",
+        options: [
+          "In stock / immediate",
+          "1–2 weeks",
+          "3–6 weeks",
+          "6+ weeks",
+          "Varies by product",
+        ],
+        required: true,
+      },
+      {
+        key: "message",
+        label: "What should we know?",
+        type: "textarea",
+        placeholder: "Product lines, certifications, recent projects, pricing approach…",
+        required: true,
+        span: 2,
+      },
+    ],
+  },
+  {
     id: "careers",
     label: "Applying to a job",
     description: "Open roles, apprenticeships, or general interest",
@@ -118,7 +176,7 @@ const audienceOptions: {
         placeholder: "you@email.com",
         required: true,
       },
-      { key: "phone", label: "Phone", type: "tel", placeholder: "(805) 555-0100" },
+      { key: "phone", label: "Phone", type: "tel", placeholder: "805 555-0100" },
       {
         key: "role",
         label: "Role you're interested in",
@@ -179,7 +237,7 @@ const audienceOptions: {
         placeholder: "you@firm.com",
         required: true,
       },
-      { key: "phone", label: "Phone", type: "tel", placeholder: "(805) 555-0100" },
+      { key: "phone", label: "Phone", type: "tel", placeholder: "805 555-0100" },
       {
         key: "organization",
         label: "Organization / firm",
@@ -405,7 +463,7 @@ function ContactDrawer() {
                     href="tel:8054815096"
                     className="transition-opacity hover:opacity-70"
                   >
-                    (805) 481-5096
+                    805 481-5096
                   </a>
                   {" · "}
                   <a
