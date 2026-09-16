@@ -94,6 +94,33 @@ img {
   height: auto;
 }
 
+/* Unlayered so it wins over the global img height/max-width rules. */
+.cover-media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center;
+}
+
+.site-logo {
+  display: block;
+  height: 39px;
+  width: auto;
+  max-width: min(229.125px, 56.0625vw);
+  object-fit: contain;
+  object-position: left center;
+}
+
+@media (min-width: 1024px) {
+  .site-logo {
+    height: 46.3125px;
+    max-width: 260.8125px;
+  }
+}
+
 /* Fill a sized parent frame without distortion.
    Do not set position here — use `relative` or `absolute` on the element. */
 .frame {
@@ -285,7 +312,7 @@ a {
   }
 }
 
-/* Impact map — yellow / navy silhouette */
+/* Impact map — navy silhouette on cream */
 .impact-us-map__svg svg {
   display: block;
   width: 100%;
@@ -294,7 +321,7 @@ a {
 
 .impact-us-map__svg path {
   fill: var(--color-dark-blue) !important;
-  stroke: var(--color-yellow) !important;
+  stroke: var(--color-cream) !important;
   stroke-width: 1.15px !important;
   vector-effect: non-scaling-stroke;
 }

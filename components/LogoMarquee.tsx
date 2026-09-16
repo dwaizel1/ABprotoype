@@ -10,18 +10,35 @@ const LOGOS = [
   { src: "/images/logos/amazon.png", alt: "Amazon" },
 ] as const;
 
+export const awardLogos = [
+  { src: "/images/logos/awards/army-commendation.png", alt: "U.S. Army Commendation Medal" },
+  { src: "/images/logos/awards/top-general-contractors.png", alt: "Top General Contractors 2025" },
+  { src: "/images/logos/awards/gold-shovel.png", alt: "Gold Shovel Standard" },
+  { src: "/images/logos/awards/sba.png", alt: "U.S. Small Business Administration" },
+  { src: "/images/logos/awards/inc-5000.png", alt: "Inc. 5000" },
+  { src: "/images/logos/awards/isn.png", alt: "ISN" },
+  { src: "/images/logos/awards/agc.png", alt: "Associated General Contractors of California" },
+  { src: "/images/logos/awards/asce.png", alt: "American Society of Civil Engineers" },
+] as const;
+
+type LogoItem = { src: string; alt: string };
+
 type LogoMarqueeProps = {
   count?: number;
   label?: string;
+  logos?: readonly LogoItem[];
+  itemClassName?: string;
 };
 
 export function LogoMarquee({
   count = CIRCLE_COUNT,
   label = "Partners",
+  logos = LOGOS,
+  itemClassName = "flex h-7 w-[120px] shrink-0 items-center justify-center md:h-9 md:w-[150px]",
 }: LogoMarqueeProps) {
   const baseLogos = Array.from(
-    { length: Math.max(count, LOGOS.length) },
-    (_, i) => LOGOS[i % LOGOS.length],
+    { length: Math.max(count, logos.length) },
+    (_, i) => logos[i % logos.length],
   );
   const track = [...baseLogos, ...baseLogos];
 
@@ -35,7 +52,7 @@ export function LogoMarquee({
 
       <div className="logo-marquee__track flex w-max items-center gap-10 py-8 md:gap-14 md:py-10">
         {track.map((logo, i) => (
-          <div key={`${logo.src}-${i}`} className="flex h-7 w-[120px] shrink-0 items-center justify-center md:h-9 md:w-[150px]">
+          <div key={`${logo.src}-${i}`} className={itemClassName}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={logo.src}

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Project } from "@/lib/projects";
+import { PhotoCredit } from "@/components/PhotoCredit";
 
 type ProjectTemplateProps = {
   project: Project;
@@ -11,6 +12,7 @@ export function ProjectTemplate({ project }: ProjectTemplateProps) {
       <div className="frame relative h-[280px] w-full bg-[#414141] md:h-[420px] lg:h-[558px]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={project.heroImage} alt="" />
+        <PhotoCredit src={project.heroImage} />
       </div>
 
       <div className="page-pad grid gap-12 py-14 lg:grid-cols-2 lg:gap-16 lg:py-16">
@@ -75,6 +77,7 @@ export function ProjectTemplate({ project }: ProjectTemplateProps) {
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={src} alt="" />
+            <PhotoCredit src={src} />
           </div>
         ))}
       </div>

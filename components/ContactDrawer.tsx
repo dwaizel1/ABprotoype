@@ -18,7 +18,7 @@ type ContactDrawerContextValue = {
   closeContact: () => void;
 };
 
-type Audience = "contractor" | "vendor" | "careers" | "investor";
+type Audience = "partners" | "careers" | "investor";
 
 type FieldDef = {
   key: string;
@@ -40,12 +40,12 @@ const audienceOptions: {
   fields: FieldDef[];
 }[] = [
   {
-    id: "contractor",
-    label: "Contractor",
-    description: "Trade partner or GC looking to work together",
+    id: "partners",
+    label: "Contractors & Vendors",
+    description: "Trade partners, GCs, suppliers, and manufacturers",
     headline: "Let's talk partnership.",
     mailto: "sales@andersonburton.com",
-    subjectPrefix: "Contractor inquiry",
+    subjectPrefix: "Contractor & vendor inquiry",
     fields: [
       { key: "name", label: "Full name", placeholder: "Your name", required: true },
       {
@@ -55,7 +55,7 @@ const audienceOptions: {
         placeholder: "you@company.com",
         required: true,
       },
-      { key: "phone", label: "Phone", type: "tel", placeholder: "805 555-0100" },
+      { key: "phone", label: "Phone", type: "tel", placeholder: "805 555 0100" },
       {
         key: "company",
         label: "Company",
@@ -63,9 +63,22 @@ const audienceOptions: {
         required: true,
       },
       {
-        key: "trade",
-        label: "Trade / specialty",
-        placeholder: "Electrical, concrete, steel…",
+        key: "kind",
+        label: "I am a",
+        type: "select",
+        options: ["Contractor", "Vendor"],
+        required: true,
+      },
+      {
+        key: "specialty",
+        label: "Trade, specialty, or product",
+        placeholder: "Electrical, concrete, steel, equipment…",
+        required: true,
+      },
+      {
+        key: "regions",
+        label: "Regions you cover",
+        placeholder: "Central Coast, statewide, national…",
         required: true,
       },
       {
@@ -74,87 +87,10 @@ const audienceOptions: {
         placeholder: "CSLB or equivalent",
       },
       {
-        key: "regions",
-        label: "Regions you cover",
-        placeholder: "Central Coast, statewide…",
-        required: true,
-      },
-      {
-        key: "capacity",
-        label: "Typical project size",
-        type: "select",
-        options: [
-          "Under $1M",
-          "$1M – $5M",
-          "$5M – $15M",
-          "$15M+",
-          "Varies / open",
-        ],
-        required: true,
-      },
-      {
         key: "message",
-        label: "How would you like to partner?",
+        label: "How would you like to work together?",
         type: "textarea",
-        placeholder: "Capabilities, bonding, recent projects, availability…",
-        required: true,
-        span: 2,
-      },
-    ],
-  },
-  {
-    id: "vendor",
-    label: "Vendor",
-    description: "Supplier or manufacturer looking to work with us",
-    headline: "Tell us what you supply.",
-    mailto: "sales@andersonburton.com",
-    subjectPrefix: "Vendor inquiry",
-    fields: [
-      { key: "name", label: "Full name", placeholder: "Your name", required: true },
-      {
-        key: "email",
-        label: "Email",
-        type: "email",
-        placeholder: "you@company.com",
-        required: true,
-      },
-      { key: "phone", label: "Phone", type: "tel", placeholder: "805 555-0100" },
-      {
-        key: "company",
-        label: "Company",
-        placeholder: "Company name",
-        required: true,
-      },
-      {
-        key: "category",
-        label: "Product / material category",
-        placeholder: "Steel, MEP, finishes, equipment…",
-        required: true,
-      },
-      {
-        key: "regions",
-        label: "Regions you serve",
-        placeholder: "Central Coast, statewide, national…",
-        required: true,
-      },
-      {
-        key: "leadTime",
-        label: "Typical lead time",
-        type: "select",
-        options: [
-          "In stock / immediate",
-          "1–2 weeks",
-          "3–6 weeks",
-          "6+ weeks",
-          "Varies by product",
-        ],
-        required: true,
-      },
-      {
-        key: "message",
-        label: "What should we know?",
-        type: "textarea",
-        placeholder: "Product lines, certifications, recent projects, pricing approach…",
+        placeholder: "Capabilities, products, recent projects, availability…",
         required: true,
         span: 2,
       },
@@ -335,7 +271,7 @@ const fieldClassName =
 function ContactDrawer() {
   const { open, closeContact } = useContactDrawer();
   const titleId = useId();
-  const [audience, setAudience] = useState<Audience | null>(null);
+  const [audience, setAudience] = useState<Audience>("partners");
   const [values, setValues] = useState<Record<string, string>>({});
 
   const selected = useMemo(
@@ -351,6 +287,12 @@ function ContactDrawer() {
   const setValue = (key: string, value: string) => {
     setValues((prev) => ({ ...prev, [key]: value }));
   };
+
+  useEffect(() => {
+    if (!open) return;
+    setAudience("partners");
+    setValues({});
+  }, [open]);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -463,7 +405,7 @@ function ContactDrawer() {
                     href="tel:8054815096"
                     className="transition-opacity hover:opacity-70"
                   >
-                    805 481-5096
+                    805 481 5096
                   </a>
                   {" · "}
                   <a

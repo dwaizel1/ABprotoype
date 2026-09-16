@@ -34,7 +34,7 @@ export function SiteFooter({ showCta = true }: SiteFooterProps) {
         <div className="type-body-3 max-w-[400px]">
           <p className="font-bold mb-0">ANDERSON BURTON</p>
           <p className="mb-0">121 Nevada St, Arroyo Grande, CA</p>
-          <p>805 481-5096 · sales@andersonburton.com</p>
+          <p>805 481 5096 · sales@andersonburton.com</p>
         </div>
 
         <nav

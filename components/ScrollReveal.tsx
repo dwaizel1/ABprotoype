@@ -74,7 +74,7 @@ export function ScrollReveal() {
           {
             root: null,
             rootMargin: "0px 0px -6% 0px",
-            threshold: [0, 0.08, 0.15],
+            threshold: 0.08,
           },
         );
 

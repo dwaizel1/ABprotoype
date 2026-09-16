@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ContactTrigger } from "@/components/ContactTrigger";
+import { PhotoCredit } from "@/components/PhotoCredit";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { industries } from "@/lib/industries";
 import { projects } from "@/lib/projects";
 
 export const metadata: Metadata = {
-  title: "Industries",
+  title: "Industries | Anderson Burton",
   description:
     "Federal, energy, municipal, and industrial construction — sectors we know how to deliver.",
 };
@@ -83,6 +83,7 @@ export default function IndustriesPage() {
               <div className="frame relative min-h-[320px] rounded-[24px] bg-[#5e5e5e] md:min-h-[440px]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={industry.image} alt="" />
+                <PhotoCredit src={industry.image} />
               </div>
 
               <div>
@@ -155,24 +156,6 @@ export default function IndustriesPage() {
           </section>
         );
       })}
-
-      <section className="bg-[var(--color-dark-blue)] text-white">
-        <div className="page-pad flex flex-col gap-8 py-16 md:flex-row md:items-end md:justify-between md:py-24">
-          <div className="max-w-[640px]">
-            <p className="type-eyebrow text-[var(--color-yellow)]">Next step</p>
-            <h2 className="type-h2 mt-3 capitalize">
-              Have a project in one of these sectors?
-            </h2>
-            <p className="mt-4 text-[16px] leading-[1.6] text-white/70">
-              Tell us what you&apos;re building. We&apos;ll bring the people who
-              own the outcome.
-            </p>
-          </div>
-          <ContactTrigger className="btn btn-yellow inline-flex h-[56px] shrink-0 items-center rounded-full px-8 text-[15px] font-medium">
-            Start a Conversation →
-          </ContactTrigger>
-        </div>
-      </section>
 
       <SiteFooter />
     </div>

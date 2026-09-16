@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useMemo, useState } from "react";
 import { AwardsSection } from "@/components/AwardsSection";
+import { LogoMarquee, awardLogos } from "@/components/LogoMarquee";
+import { PhotoCredit } from "@/components/PhotoCredit";
 import { ProjectCatalog } from "@/components/ProjectCatalog";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -149,6 +151,7 @@ function WorkPageContent() {
                   <span className="absolute left-4 top-4 z-10 rounded-[12px] bg-white/70 px-4 py-2 text-[11px] font-semibold tracking-tight text-[var(--color-dark-blue)] backdrop-blur-md">
                     {project.type}
                   </span>
+                  <PhotoCredit src={project.heroImage} />
                 </div>
                 <p className="type-h6 mt-4 text-[var(--color-dark-blue)]">
                   {project.title}
@@ -190,6 +193,12 @@ function WorkPageContent() {
       </section>
 
       <ProjectCatalog filter={activeFilter} />
+
+      <LogoMarquee
+        label="Awards"
+        logos={awardLogos}
+        itemClassName="flex h-12 w-[132px] shrink-0 items-center justify-center md:h-16 md:w-[160px]"
+      />
 
       <AwardsSection />
     </>

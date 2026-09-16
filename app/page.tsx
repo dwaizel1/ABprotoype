@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { ImpactMap } from "@/components/ImpactMap";
 import { LogoMarquee } from "@/components/LogoMarquee";
+import { PhotoCredit } from "@/components/PhotoCredit";
 import { ServicesCarousel } from "@/components/ServicesCarousel";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -65,12 +66,12 @@ export default function HomePage() {
       <SiteHeader variant="overlay" />
 
       {/* Hero */}
-      <section className="relative flex min-h-[640px] h-[min(982px,100svh)] flex-col overflow-hidden bg-black">
+      <section className="relative flex min-h-[100svh] h-[min(982px,100svh)] flex-col overflow-hidden bg-black md:min-h-[640px]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/images/home/hero.jpg"
           alt="Aerial view of solar canopy installation over a parking lot during construction"
-          className="absolute inset-0 h-full w-full max-w-none object-cover object-center"
+          className="cover-media"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/30 to-black/40" />
 
@@ -190,16 +191,17 @@ export default function HomePage() {
           <div className="frame relative min-h-[360px] rounded-[26px] bg-[#5e5e5e] lg:min-h-[508px]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={industries[activeIndustry].image} alt="" />
+            <PhotoCredit src={industries[activeIndustry].image} />
           </div>
         </div>
       </section>
 
       <LogoMarquee />
 
-      {/* Impact — stats + map (yellow / navy graphic style) */}
+      {/* Impact — stats + map */}
       <section
         id="impact"
-        className="bg-[var(--color-yellow)] text-[var(--color-dark-blue)]"
+        className="bg-[var(--color-cream)] text-[var(--color-dark-blue)]"
       >
         <div className="page-pad border-b border-[var(--color-dark-blue)] pt-14 pb-10 md:pt-20 md:pb-12">
           <p className="type-eyebrow text-[var(--color-dark-blue)]/70">OUR IMPACT</p>

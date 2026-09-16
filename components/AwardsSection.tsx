@@ -12,9 +12,7 @@ export function AwardsSection({ className = "" }: AwardsSectionProps) {
           <div className="lg:w-[32%] lg:shrink-0">
             <p className="type-eyebrow text-[var(--color-yellow)]">Recognition</p>
             <h2 className="mt-3 text-[clamp(34px,4.2vw,62px)] font-semibold leading-[0.98] tracking-[-0.03em]">
-              Awards and
-              <br />
-              Accolades
+              More Awards
             </h2>
           </div>
 

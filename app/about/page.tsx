@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { AwardsSection } from "@/components/AwardsSection";
+import { LogoMarquee, awardLogos } from "@/components/LogoMarquee";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { projects } from "@/lib/projects";
@@ -186,6 +187,12 @@ export default function AboutPage() {
           ))}
         </div>
       </section>
+
+      <LogoMarquee
+        label="Awards"
+        logos={awardLogos}
+        itemClassName="flex h-12 w-[132px] shrink-0 items-center justify-center md:h-16 md:w-[160px]"
+      />
 
       <AwardsSection />
 

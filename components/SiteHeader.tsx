@@ -16,14 +16,19 @@ export function SiteHeader({ variant: _variant = "solid" }: SiteHeaderProps) {
   const { openContact } = useContactDrawer();
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-[var(--color-dark-blue)] text-white shadow-[0_1px_0_rgba(255,255,255,0.08)]">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-[var(--color-dark-blue)] text-white shadow-[0_4px_14px_rgba(0,0,0,0.22)]">
       <div className="page-pad flex h-[76px] items-center justify-between md:h-[84px]">
         <Link
           href="/"
-          className="font-[family-name:var(--font-display)] text-[15px] font-semibold tracking-[0.1em] uppercase transition-opacity hover:opacity-80 md:text-[16px]"
+          className="inline-flex shrink-0 items-center transition-opacity hover:opacity-80"
           onClick={() => setOpen(false)}
         >
-          Anderson Burton
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/ab-logo.png"
+            alt="Anderson Burton Construction"
+            className="site-logo"
+          />
         </Link>
 
         <nav className="hidden items-center gap-9 lg:flex" aria-label="Primary">
@@ -50,7 +55,7 @@ export function SiteHeader({ variant: _variant = "solid" }: SiteHeaderProps) {
             onClick={openContact}
             className="btn btn-light inline-flex h-11 items-center rounded-full px-6 text-[15px] font-medium"
           >
-            Connect →
+            Connect
           </button>
         </nav>
 
@@ -100,7 +105,7 @@ export function SiteHeader({ variant: _variant = "solid" }: SiteHeaderProps) {
                 openContact();
               }}
             >
-              Connect →
+              Connect
             </button>
           </nav>
         </div>

@@ -7,15 +7,9 @@ import type { KeyService } from "@/lib/key-services";
 
 export function KeyServicesPage({ services }: { services: KeyService[] }) {
   const [activeSlug, setActiveSlug] = useState(services[0]?.slug ?? "");
-  const [openId, setOpenId] = useState<number | null>(null);
   const service = services.find((s) => s.slug === activeSlug) ?? services[0];
 
   if (!service) return null;
-
-  function selectService(slug: string) {
-    setActiveSlug(slug);
-    setOpenId(null);
-  }
 
   return (
     <div className="min-h-screen bg-[var(--color-cream)]">
@@ -36,7 +30,7 @@ export function KeyServicesPage({ services }: { services: KeyService[] }) {
                 <button
                   key={item.slug}
                   type="button"
-                  onClick={() => selectService(item.slug)}
+                  onClick={() => setActiveSlug(item.slug)}
                   className={`btn text-left text-[clamp(22px,2.2vw,32px)] font-medium leading-[1.15] tracking-[-0.02em] transition-colors ${
                     active
                       ? "text-[var(--color-dark-blue)]"
@@ -72,46 +66,14 @@ export function KeyServicesPage({ services }: { services: KeyService[] }) {
             </div>
 
             <ul className="mt-14 max-w-[920px] border-t border-[var(--color-dark-blue)]/20 md:mt-16">
-              {service.items.map((item, i) => {
-                const isOpen = openId === i;
-                return (
-                  <li
-                    key={item.title}
-                    className="border-b border-[var(--color-dark-blue)]/20"
-                  >
-                    <button
-                      type="button"
-                      className="btn flex w-full items-center justify-between gap-6 py-5 text-left md:py-6"
-                      onClick={() => setOpenId(isOpen ? null : i)}
-                      aria-expanded={isOpen}
-                    >
-                      <span className="text-[16px] leading-[1.45] text-[var(--color-dark-blue)] md:text-[18px]">
-                        {item.title}
-                      </span>
-                      <span
-                        className={`flex size-8 shrink-0 items-center justify-center rounded-full border border-[var(--color-dark-blue)]/35 text-[20px] leading-none text-[var(--color-dark-blue)] transition-transform duration-300 md:size-9 ${
-                          isOpen ? "rotate-45 bg-[var(--color-dark-blue)]/5" : ""
-                        }`}
-                        aria-hidden
-                      >
-                        +
-                      </span>
-                    </button>
-
-                    <div
-                      className={`grid transition-[grid-template-rows] duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                        isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-                      }`}
-                    >
-                      <div className="overflow-hidden">
-                        <p className="max-w-[640px] pb-6 pr-14 text-[15px] leading-[1.65] text-[var(--color-dark-blue)]/70 md:text-[16px]">
-                          {item.body}
-                        </p>
-                      </div>
-                    </div>
-                  </li>
-                );
-              })}
+              {service.items.map((item) => (
+                <li
+                  key={item.title}
+                  className="border-b border-[var(--color-dark-blue)]/20 py-5 text-[16px] leading-[1.45] text-[var(--color-dark-blue)] md:py-6 md:text-[18px]"
+                >
+                  {item.title}
+                </li>
+              ))}
             </ul>
           </div>
         </div>

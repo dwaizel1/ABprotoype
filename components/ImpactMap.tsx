@@ -87,8 +87,8 @@ export function ImpactMap() {
                 }}
                 className={`btn h-9 rounded-full px-4 text-[13px] transition ${
                   selected
-                    ? "bg-[var(--color-dark-blue)] text-[var(--color-yellow)]"
-                    : "border border-[var(--color-dark-blue)] bg-[var(--color-yellow)] text-[var(--color-dark-blue)] hover:bg-[var(--color-dark-blue)] hover:text-[var(--color-yellow)]"
+                    ? "bg-[var(--color-dark-blue)] text-[var(--color-cream)]"
+                    : "border border-[var(--color-dark-blue)] bg-transparent text-[var(--color-dark-blue)] hover:bg-[var(--color-dark-blue)] hover:text-[var(--color-cream)]"
                 }`}
               >
                 {option}
@@ -145,9 +145,7 @@ export function ImpactMap() {
                     strokeWidth={isActive ? 3 : 2.25}
                     className="pointer-events-none"
                   >
-                    <title>
-                      {loc.name}, {loc.location}
-                    </title>
+                    <title>{`${loc.name}, ${loc.location}`}</title>
                   </circle>
                 </g>
               );
