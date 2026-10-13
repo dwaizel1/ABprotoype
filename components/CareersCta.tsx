@@ -1,0 +1,31 @@
+"use client";
+
+import { useContactDrawer } from "@/components/ContactDrawer";
+
+export function CareersCta() {
+  const { openContactAs } = useContactDrawer();
+
+  return (
+    <section className="page-pad py-20 text-center md:py-28">
+      <div className="mx-auto flex max-w-[860px] flex-col items-center">
+        <h2 className="type-h2 text-balance text-[var(--color-dark-blue)]">
+          Think you&rsquo;d be a good addition to our team?
+        </h2>
+        <p className="mt-4 max-w-[520px] text-[16px] leading-[1.6] text-[var(--color-dark-blue)]/70">
+          We&rsquo;re always looking for builders, estimators, and project
+          leaders who want a real stake in the work.
+        </p>
+        <button
+          type="button"
+          onClick={() => openContactAs("careers")}
+          className="btn btn-primary mt-8 inline-flex h-11 items-center gap-3 rounded-full pr-5 pl-1.5 text-[14px] font-medium"
+        >
+          <span className="flex size-8 items-center justify-center rounded-full bg-white/15">
+            →
+          </span>
+          View Careers
+        </button>
+      </div>
+    </section>
+  );
+}

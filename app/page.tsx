@@ -190,7 +190,14 @@ export default function HomePage() {
           </div>
           <div className="frame relative min-h-[360px] rounded-[26px] bg-[#5e5e5e] lg:min-h-[508px]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={industries[activeIndustry].image} alt="" />
+            <img
+              src={industries[activeIndustry].image}
+              alt=""
+              style={{
+                objectPosition:
+                  industries[activeIndustry].imagePosition ?? "center",
+              }}
+            />
             <PhotoCredit src={industries[activeIndustry].image} />
           </div>
         </div>

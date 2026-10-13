@@ -15,10 +15,12 @@ import {
 type ContactDrawerContextValue = {
   open: boolean;
   openContact: () => void;
+  openContactAs: (audience: Audience) => void;
   closeContact: () => void;
+  initialAudience: Audience;
 };
 
-type Audience = "partners" | "careers" | "investor";
+export type Audience = "partners" | "careers" | "investor";
 
 type FieldDef = {
   key: string;
@@ -230,8 +232,16 @@ export function useContactDrawer() {
 
 export function ContactProvider({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
+  const [initialAudience, setInitialAudience] = useState<Audience>("partners");
 
-  const openContact = useCallback(() => setOpen(true), []);
+  const openContact = useCallback(() => {
+    setInitialAudience("partners");
+    setOpen(true);
+  }, []);
+  const openContactAs = useCallback((audience: Audience) => {
+    setInitialAudience(audience);
+    setOpen(true);
+  }, []);
   const closeContact = useCallback(() => setOpen(false), []);
 
   useEffect(() => {
@@ -258,7 +268,9 @@ export function ContactProvider({ children }: { children: ReactNode }) {
   }, [open]);
 
   return (
-    <ContactDrawerContext.Provider value={{ open, openContact, closeContact }}>
+    <ContactDrawerContext.Provider
+      value={{ open, openContact, openContactAs, closeContact, initialAudience }}
+    >
       {children}
       <ContactDrawer />
     </ContactDrawerContext.Provider>
@@ -269,7 +281,7 @@ const fieldClassName =
   "w-full rounded-none border-0 border-b border-white/25 bg-transparent px-0 text-[16px] text-white outline-none transition-[border-color] placeholder:text-white/35 focus:border-[var(--color-yellow)]";
 
 function ContactDrawer() {
-  const { open, closeContact } = useContactDrawer();
+  const { open, closeContact, initialAudience } = useContactDrawer();
   const titleId = useId();
   const [audience, setAudience] = useState<Audience>("partners");
   const [values, setValues] = useState<Record<string, string>>({});
@@ -290,9 +302,9 @@ function ContactDrawer() {
 
   useEffect(() => {
     if (!open) return;
-    setAudience("partners");
+    setAudience(initialAudience);
     setValues({});
-  }, [open]);
+  }, [open, initialAudience]);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();

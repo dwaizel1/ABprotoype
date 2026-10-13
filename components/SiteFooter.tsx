@@ -14,8 +14,8 @@ export function SiteFooter({ showCta = true }: SiteFooterProps) {
   return (
     <footer id="contact" className="bg-[var(--color-yellow)] text-[var(--color-dark-blue)]">
       {showCta && (
-        <div className="page-pad flex flex-col gap-8 pt-16 pb-12 md:flex-row md:items-start md:justify-between md:pt-20">
-          <h2 className="type-h2 max-w-[860px] capitalize">
+        <div className="page-pad flex flex-col gap-6 pt-12 pb-8 md:flex-row md:items-center md:justify-between md:pt-14 md:pb-10">
+          <h2 className="type-h2 max-w-[860px] !leading-[1.02] capitalize">
             Ready to break
             <br />
             ground? Let&apos;s talk.

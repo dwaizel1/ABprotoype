@@ -143,6 +143,45 @@ a {
   text-decoration: none;
 }
 
+.nav-pill {
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.6);
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.nav-pill:hover {
+  color: rgba(255, 255, 255, 0.92);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.nav-pill[aria-current="page"] {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.process-panel {
+  animation: process-panel-in 0.4s ease both;
+}
+
+@keyframes process-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .process-panel {
+    animation: none;
+  }
+}
+
 /* Shared button / interactive control hovers */
 .btn {
   transition:

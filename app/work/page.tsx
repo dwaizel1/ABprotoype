@@ -1,124 +1,63 @@
 "use client";
 
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
-import { Suspense, useEffect, useMemo, useState } from "react";
+import { Suspense, useState } from "react";
 import { AwardsSection } from "@/components/AwardsSection";
 import { LogoMarquee, awardLogos } from "@/components/LogoMarquee";
 import { PhotoCredit } from "@/components/PhotoCredit";
 import { ProjectCatalog } from "@/components/ProjectCatalog";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
-import { projects } from "@/lib/projects";
+import { WorkFilterTabs, useWorkFilter } from "@/components/WorkFilterTabs";
+import { WorkHero } from "@/components/WorkHero";
 
-const filters = ["All", "Federal", "Municipal", "Energy", "Commercial", "Industrial"] as const;
-
-type Filter = (typeof filters)[number];
 type ViewMode = "cards" | "list";
 
-function isFilter(value: string | null): value is Filter {
-  return !!value && (filters as readonly string[]).includes(value);
-}
-
 function WorkPageContent() {
-  const searchParams = useSearchParams();
-  const typeParam = searchParams.get("type");
-  const initialFilter: Filter = isFilter(typeParam) ? typeParam : "All";
-  const [activeFilter, setActiveFilter] = useState<Filter>(initialFilter);
+  const { activeFilter, setActiveFilter, filtered } = useWorkFilter();
   const [view, setView] = useState<ViewMode>("cards");
-
-  useEffect(() => {
-    setActiveFilter(isFilter(typeParam) ? typeParam : "All");
-  }, [typeParam]);
-
-  const filtered = useMemo(() => {
-    if (activeFilter === "All") return projects;
-    return projects.filter((p) => p.type === activeFilter);
-  }, [activeFilter]);
 
   return (
     <>
-      <section className="page-pad pt-16 pb-12 md:pt-24 md:pb-16">
-        <p className="type-eyebrow text-[var(--color-blue)]">Work</p>
-        <h1
-          className="mt-4 max-w-[980px] font-[family-name:var(--font-display)] font-semibold text-[var(--color-dark-blue)]"
-          style={{
-            fontSize: "clamp(40px, 7vw, 88px)",
-            lineHeight: 1.02,
-            letterSpacing: "-0.03em",
-          }}
-        >
-          Projects that prove what ownership looks like on the ground.
-        </h1>
-        <p className="mt-6 max-w-[640px] type-body-1 text-[var(--color-dark-blue)]/80">
-          From federal campuses to municipal civic centers and energy
-          infrastructure, our portfolio reflects complex builds delivered with
-          schedule certainty and accountability at every stage.
-        </p>
-      </section>
+      <WorkHero />
 
-      <section className="page-pad pb-8">
-        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <div>
-            <p className="type-eyebrow mb-4 text-[var(--color-text-muted)]">
-              Filter
-            </p>
+      <section className="page-pad pt-14 pb-10 md:pt-20 md:pb-12">
+        <WorkFilterTabs
+          active={activeFilter}
+          onChange={setActiveFilter}
+          aside={
             <div
-              className="flex flex-wrap gap-3"
-              role="tablist"
-              aria-label="Filter projects"
+              className="mb-2 inline-flex shrink-0 rounded-full border border-[var(--color-dark-blue)]/25 p-1"
+              role="group"
+              aria-label="View style"
             >
-              {filters.map((f) => {
-                const active = f === activeFilter;
-                return (
-                  <button
-                    key={f}
-                    type="button"
-                    role="tab"
-                    aria-selected={active}
-                    onClick={() => setActiveFilter(f)}
-                    className={`btn inline-flex h-10 items-center rounded-full px-5 type-body-3 ${
-                      active ? "btn-pill-active" : "btn-pill"
-                    }`}
-                  >
-                    {f}
-                  </button>
-                );
-              })}
+              <button
+                type="button"
+                aria-pressed={view === "cards"}
+                onClick={() => setView("cards")}
+                className={`btn inline-flex h-9 items-center rounded-full px-4 text-[13px] ${
+                  view === "cards"
+                    ? "bg-[var(--color-dark-blue)] text-white"
+                    : "text-[var(--color-dark-blue)] hover:bg-[var(--color-dark-blue)]/5"
+                }`}
+              >
+                Cards
+              </button>
+              <button
+                type="button"
+                aria-pressed={view === "list"}
+                onClick={() => setView("list")}
+                className={`btn inline-flex h-9 items-center rounded-full px-4 text-[13px] ${
+                  view === "list"
+                    ? "bg-[var(--color-dark-blue)] text-white"
+                    : "text-[var(--color-dark-blue)] hover:bg-[var(--color-dark-blue)]/5"
+                }`}
+              >
+                List
+              </button>
             </div>
-          </div>
-
-          <div
-            className="inline-flex rounded-full border border-[var(--color-dark-blue)]/25 p-1"
-            role="group"
-            aria-label="View style"
-          >
-            <button
-              type="button"
-              aria-pressed={view === "cards"}
-              onClick={() => setView("cards")}
-              className={`btn inline-flex h-9 items-center rounded-full px-4 text-[13px] ${
-                view === "cards"
-                  ? "bg-[var(--color-dark-blue)] text-white"
-                  : "text-[var(--color-dark-blue)] hover:bg-[var(--color-dark-blue)]/5"
-              }`}
-            >
-              Cards
-            </button>
-            <button
-              type="button"
-              aria-pressed={view === "list"}
-              onClick={() => setView("list")}
-              className={`btn inline-flex h-9 items-center rounded-full px-4 text-[13px] ${
-                view === "list"
-                  ? "bg-[var(--color-dark-blue)] text-white"
-                  : "text-[var(--color-dark-blue)] hover:bg-[var(--color-dark-blue)]/5"
-              }`}
-            >
-              List
-            </button>
-          </div>
-        </div>
+          }
+        />
       </section>
 
       <section className="page-pad pb-24">
@@ -208,10 +147,7 @@ function WorkPageContent() {
 export default function WorkPage() {
   return (
     <div className="min-h-screen bg-[var(--color-cream)]">
-      <div className="relative">
-        <SiteHeader variant="solid" />
-        <div className="h-[76px] md:h-[84px]" />
-      </div>
+      <SiteHeader variant="overlay" />
 
       <Suspense fallback={null}>
         <WorkPageContent />

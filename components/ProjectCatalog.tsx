@@ -12,21 +12,23 @@ type CatalogFilter =
   | "Industrial";
 
 type ProjectCatalogProps = {
-  filter?: CatalogFilter;
+  filter?: CatalogFilter | CatalogFilter[];
 };
 
 export function ProjectCatalog({ filter = "All" }: ProjectCatalogProps) {
+  const filterKey = Array.isArray(filter) ? filter.join(",") : filter;
+
   const groups = useMemo(() => {
+    const types = filterKey.split(",");
     return catalogGroups
       .map((group) => ({
         ...group,
-        projects:
-          filter === "All"
-            ? group.projects
-            : group.projects.filter((p) => p.type === filter),
+        projects: types.includes("All")
+          ? group.projects
+          : group.projects.filter((p) => types.includes(p.type)),
       }))
       .filter((group) => group.projects.length > 0);
-  }, [filter]);
+  }, [filterKey]);
 
   const total = groups.reduce((n, g) => n + g.projects.length, 0);
 

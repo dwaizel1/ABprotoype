@@ -1,13 +1,20 @@
+export type ProjectType = "Federal" | "Municipal" | "Energy" | "Commercial" | "Industrial";
+
 export type Industry = {
   id: string;
   slug: string;
   name: string;
   shortName: string;
+  headline: string;
   summary: string;
   description: string;
   focuses: string[];
-  workFilter: "Federal" | "Municipal" | "Energy" | "Commercial" | "Industrial";
+  workFilter: ProjectType;
+  /** Project types that count as this industry's work */
+  workTypes: ProjectType[];
   image: string;
+  /** CSS object-position so wide photos crop on the right subject */
+  imagePosition?: string;
 };
 
 export const industries: Industry[] = [
@@ -16,6 +23,7 @@ export const industries: Industry[] = [
     slug: "federal",
     name: "Federal",
     shortName: "Federal",
+    headline: "Trusted on the sites where compliance, security, and history all matter.",
     summary:
       "Defense, military construction, civil works, and federal infrastructure — built to the most demanding standards.",
     description:
@@ -27,13 +35,16 @@ export const industries: Industry[] = [
       "LEED and sustainability performance",
     ],
     workFilter: "Federal",
-    image: "/images/home/industry.jpg",
+    workTypes: ["Federal"],
+    image: "/images/industries/federal.jpg",
+    imagePosition: "center 42%",
   },
   {
     id: "02",
     slug: "energy",
     name: "Power & Energy",
     shortName: "Energy",
+    headline: "Critical infrastructure, brought online without taking the grid down.",
     summary:
       "Utilities and energy infrastructure delivered with schedule certainty and operational reliability.",
     description:
@@ -45,13 +56,16 @@ export const industries: Industry[] = [
       "Safety systems for high-consequence environments",
     ],
     workFilter: "Energy",
-    image: "/images/home/service-4.jpg",
+    workTypes: ["Energy"],
+    image: "/images/industries/energy.jpg",
+    imagePosition: "28% 40%",
   },
   {
     id: "03",
     slug: "municipal",
     name: "Municipalities",
     shortName: "Municipal",
+    headline: "Civic buildings that stay open to the public while we build them.",
     summary:
       "Civic facilities and public works built for the communities that depend on them.",
     description:
@@ -63,13 +77,16 @@ export const industries: Industry[] = [
       "Budget stewardship for public owners",
     ],
     workFilter: "Municipal",
-    image: "/images/home/service-2.jpg",
+    workTypes: ["Municipal"],
+    image: "/images/industries/municipal.jpg",
+    imagePosition: "55% 45%",
   },
   {
     id: "04",
     slug: "industrial-commercial",
     name: "Industrial & Commercial",
     shortName: "Industrial",
+    headline: "Facilities that open on schedule and work hard from day one.",
     summary:
       "Complex industrial and commercial builds from ground-up to renovation.",
     description:
@@ -81,7 +98,9 @@ export const industries: Industry[] = [
       "Heavy site and logistics planning",
     ],
     workFilter: "Industrial",
-    image: "/images/home/service-1.jpg",
+    workTypes: ["Industrial", "Commercial"],
+    image: "/images/industries/commercial.jpg",
+    imagePosition: "62% 48%",
   },
 ];
 

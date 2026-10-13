@@ -60,12 +60,7 @@ export default function IndustriesPage() {
 
       {industries.map((industry, index) => {
         const related = projects
-          .filter((p) => {
-            if (industry.workFilter === "Industrial") {
-              return p.type === "Industrial" || p.type === "Commercial";
-            }
-            return p.type === industry.workFilter;
-          })
+          .filter((p) => industry.workTypes.some((type) => type === p.type))
           .slice(0, 2);
         const reversed = index % 2 === 1;
 
@@ -82,7 +77,13 @@ export default function IndustriesPage() {
             >
               <div className="frame relative min-h-[320px] rounded-[24px] bg-[#5e5e5e] md:min-h-[440px]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={industry.image} alt="" />
+                <img
+                  src={industry.image}
+                  alt=""
+                  style={{
+                    objectPosition: industry.imagePosition ?? "center",
+                  }}
+                />
                 <PhotoCredit src={industry.image} />
               </div>
 
@@ -91,7 +92,12 @@ export default function IndustriesPage() {
                   {industry.id}
                 </p>
                 <h2 className="mt-3 type-h2 capitalize text-[var(--color-dark-blue)]">
-                  {industry.name}
+                  <Link
+                    href={`/industries/${industry.slug}`}
+                    className="transition-opacity hover:opacity-70"
+                  >
+                    {industry.name}
+                  </Link>
                 </h2>
                 <p className="mt-5 max-w-[480px] text-[17px] leading-[1.65] text-[var(--color-dark-blue)]/85">
                   {industry.description}
@@ -104,7 +110,7 @@ export default function IndustriesPage() {
                       className="flex gap-3 text-[15px] leading-[1.5] text-[var(--color-dark-blue)]"
                     >
                       <span
-                        className="mt-2 size-1.5 shrink-0 rounded-full bg-[var(--color-yellow)]"
+                        className="mt-2 size-1.5 shrink-0 rounded-full bg-[var(--color-dark-blue)]"
                         aria-hidden
                       />
                       {focus}
@@ -143,12 +149,18 @@ export default function IndustriesPage() {
                   </div>
                 )}
 
-                <div className="mt-10">
+                <div className="mt-10 flex flex-wrap gap-3">
                   <Link
-                    href={`/work?type=${encodeURIComponent(industry.workFilter)}`}
+                    href={`/industries/${industry.slug}`}
                     className="btn btn-primary inline-flex h-[52px] items-center rounded-full px-7 text-[15px] font-medium"
                   >
-                    View {industry.shortName} Work →
+                    Explore {industry.shortName} →
+                  </Link>
+                  <Link
+                    href={`/work?type=${encodeURIComponent(industry.workFilter)}`}
+                    className="btn btn-outline inline-flex h-[52px] items-center rounded-full px-7 text-[15px] font-medium"
+                  >
+                    View {industry.shortName} Work
                   </Link>
                 </div>
               </div>
