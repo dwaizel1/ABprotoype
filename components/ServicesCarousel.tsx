@@ -4,6 +4,8 @@ export type ServiceCard = {
   title: string;
   desc: string;
   image: string;
+  alt?: string;
+  imagePosition?: string;
   label: string;
 };
 
@@ -25,7 +27,8 @@ export function ServicesCarousel({ services }: ServicesCarouselProps) {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={s.image}
-                alt=""
+                alt={s.alt ?? ""}
+                style={s.imagePosition ? { objectPosition: s.imagePosition } : undefined}
                 className="transition-transform duration-500 ease-out group-hover:scale-[1.04]"
               />
               <div

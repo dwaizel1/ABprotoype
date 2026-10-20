@@ -109,6 +109,7 @@ const phases: Phase[] = [
         "Stop-work authority for every person on site",
         "Daily safety briefings",
         "QA/QC inspections and third-party testing",
+        "SWPPP and environmental controls",
         "Occupied-site and outage coordination*",
       ],
     },

@@ -41,7 +41,7 @@ export default async function IndustryPage({ params }: PageProps) {
     <div className="min-h-screen bg-[var(--color-cream)]">
       <SiteHeader variant="overlay" />
 
-      <section className="relative flex h-[min(640px,72svh)] min-h-[420px] flex-col overflow-hidden bg-black">
+      <section className="relative flex min-h-[560px] h-[min(760px,88svh)] flex-col overflow-hidden bg-black">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={industry.image}

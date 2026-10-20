@@ -136,11 +136,22 @@ export function ImpactMap() {
                       setActiveId(loc.id === activeId ? null : loc.id);
                     }}
                   />
+                  {isActive && (
+                    <circle
+                      cx={x}
+                      cy={y}
+                      r={16}
+                      fill="none"
+                      stroke="var(--color-yellow)"
+                      strokeWidth={2}
+                      className="pointer-events-none"
+                    />
+                  )}
                   <circle
                     cx={x}
                     cy={y}
                     r={isActive ? 11 : 7.5}
-                    fill={isActive ? "var(--color-yellow)" : "#fff"}
+                    fill="var(--color-yellow)"
                     stroke="var(--color-dark-blue)"
                     strokeWidth={isActive ? 3 : 2.25}
                     className="pointer-events-none"

@@ -25,7 +25,9 @@ const services = [
   {
     title: "Historical Restoration",
     desc: "Defense, military construction, civil works, and federal infrastructure — built to the most demanding standards.",
-    image: "/images/home/service-3.jpg",
+    image: "/images/home/historic-restoration.jpg",
+    alt: "Aerial view of the USS Maine Memorial at Arlington National Cemetery",
+    imagePosition: "55% 45%",
     label: "USS Maine Memorial, Arlington National Cemetery",
   },
   {
@@ -69,9 +71,11 @@ export default function HomePage() {
       <section className="relative flex min-h-[100svh] h-[min(982px,100svh)] flex-col overflow-hidden bg-black md:min-h-[640px]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/images/home/hero.jpg"
-          alt="Aerial view of solar canopy installation over a parking lot during construction"
+          src="/images/home/hero-solar.jpg"
+          alt="Aerial view of a solar carport under construction"
           className="cover-media"
+          style={{ objectPosition: "62% 55%" }}
+          data-intro-target
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/30 to-black/40" />
 
@@ -177,6 +181,21 @@ export default function HomePage() {
                         )}
                       </div>
                     </button>
+                    {active && (
+                      <Link
+                        href={`/industries/${ind.slug}`}
+                        className="group/learn -mt-1 mb-5 inline-flex items-center gap-1.5 rounded-sm text-[14px] font-semibold text-[var(--color-dark-blue)] transition-colors hover:text-[var(--color-blue)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-dark-blue)]"
+                      >
+                        Learn more
+                        <span className="sr-only"> about {ind.name}</span>
+                        <span
+                          className="transition-transform duration-200 group-hover/learn:translate-x-1 motion-reduce:transition-none"
+                          aria-hidden
+                        >
+                          →
+                        </span>
+                      </Link>
+                    )}
                   </li>
                 );
               })}
@@ -255,9 +274,14 @@ export default function HomePage() {
           <h2 className="type-h2 mt-2 max-w-[856px] capitalize">
             5 key values
           </h2>
-          <div className="frame relative mt-12 h-[240px] rounded-[20px] md:h-[388px]">
+          <div className="frame relative mt-12 aspect-[4/3] rounded-[20px] md:aspect-[3/2] lg:aspect-[2/1]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/images/home/values.jpg" alt="" />
+            <img
+              src="/images/home/fire-station-27.jpg"
+              alt="Santa Barbara County Fire Station 27 and Sheriff station at dusk"
+              style={{ objectPosition: "60% 80%" }}
+            />
+            <PhotoCredit src="/images/home/fire-station-27.jpg" />
           </div>
           <ul className="mt-16 border-t border-white/40">
             {values.map((v) => (
