@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { AboutValues } from "@/components/AboutValues";
+import { ArrowSquareIcon } from "@/components/ArrowSquareIcon";
 import { AwardsSection } from "@/components/AwardsSection";
-import { LogoMarquee, awardLogos } from "@/components/LogoMarquee";
-import { ProjectProcess } from "@/components/ProjectProcess";
+import { LogoMarquee } from "@/components/LogoMarquee";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { ValuesSpotlight } from "@/components/ValuesSpotlight";
@@ -48,9 +48,10 @@ export default function AboutV2Page() {
             </div>
             <Link
               href="#team"
-              className="btn btn-light inline-flex h-[52px] w-fit shrink-0 items-center rounded-full px-7 text-[15px] font-medium"
+              className="btn btn-light inline-flex h-[52px] w-fit shrink-0 items-center gap-2.5 rounded-full px-7 text-[15px] font-medium"
             >
-              Meet the Team ↓
+              Meet the Team
+              <ArrowSquareIcon direction="down" size={20} />
             </Link>
           </div>
         </div>
@@ -61,20 +62,8 @@ export default function AboutV2Page() {
       {/* Values spotlight */}
       <ValuesSpotlight />
 
-      {/* Client Core process */}
-      <section className="bg-[#031229] text-white">
-        <div className="page-pad py-20 md:py-[174px]">
-          <h2 className="type-h2 max-w-[760px]">
-            How we protect your project, phase by phase.
-          </h2>
-          <div className="mt-10 md:mt-14">
-            <ProjectProcess />
-          </div>
-        </div>
-      </section>
-
       {/* Team */}
-      <section id="team" className="scroll-mt-[100px] page-pad pt-16 pb-20 md:pt-24 md:pb-28">
+      <section id="team" className="scroll-mt-[100px] page-pad pb-20 md:pb-28">
         <h2 className="type-h2 max-w-[760px] text-[var(--color-dark-blue)]">
           The people behind every project.
         </h2>
@@ -110,11 +99,7 @@ export default function AboutV2Page() {
         </div>
       </section>
 
-      <LogoMarquee
-        label="Awards"
-        logos={awardLogos}
-        itemClassName="flex h-12 w-[132px] shrink-0 items-center justify-center md:h-16 md:w-[160px]"
-      />
+      <LogoMarquee variant="awards" />
 
       <AwardsSection />
 

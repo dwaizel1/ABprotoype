@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { ArrowSquareIcon } from "@/components/ArrowSquareIcon";
 
 const approach = [
   {
@@ -16,7 +17,7 @@ const approach = [
     title: "Federal & Public-Sector Fluency",
     body: "Twenty-seven years of NPS, USACE, and Air Force work means our teams speak the language of federal contracting — submittals, QA/QC, security, and closeout packages delivered right the first time.",
     image: "/images/industries/federal.jpg",
-    alt: "Aerial view of a federal energy campus at sunset",
+    alt: "Aerial view of a steel-frame federal building under construction",
     href: "/industries#federal",
     cta: "Federal Work",
   },
@@ -73,11 +74,9 @@ export function AboutApproach() {
                     <Link
                       href={item.href}
                       tabIndex={open ? 0 : -1}
-                      className="btn btn-primary mt-6 inline-flex h-11 items-center gap-3 rounded-full pr-5 pl-1.5 text-[14px] font-medium"
+                      className="btn btn-primary mt-6 inline-flex h-11 items-center gap-2.5 rounded-full pr-5 pl-3 text-[14px] font-medium"
                     >
-                      <span className="flex size-8 items-center justify-center rounded-full bg-white/15">
-                        →
-                      </span>
+                      <ArrowSquareIcon size={22} strokeWidth={1.75} />
                       {item.cta}
                     </Link>
                   </div>

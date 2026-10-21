@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { ArrowSquareIcon } from "@/components/ArrowSquareIcon";
 import { ContactTrigger } from "@/components/ContactTrigger";
 import { PhotoCredit } from "@/components/PhotoCredit";
 import { ScrollStudio } from "@/components/ScrollStudio";
@@ -58,7 +59,9 @@ export default function TestPage() {
                   aria-current={active ? "true" : undefined}
                 >
                   {item.title}
-                  {active ? " →" : ""}
+                  {active && (
+                    <ArrowSquareIcon size="0.9em" strokeWidth={1.75} className="ml-[0.3em] align-[-0.12em]" />
+                  )}
                 </button>
               );
             })}
@@ -80,8 +83,9 @@ export default function TestPage() {
           </p>
 
           <div className="mt-10 flex flex-wrap items-center gap-3">
-            <ContactTrigger className="btn btn-primary inline-flex h-12 items-center rounded-full px-7 text-[14px] font-medium">
-              Get started →
+            <ContactTrigger className="btn btn-primary inline-flex h-12 items-center gap-2 rounded-full px-7 text-[14px] font-medium">
+              Get started
+              <ArrowSquareIcon size={18} />
             </ContactTrigger>
             <Link
               href="/work"

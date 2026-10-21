@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { ArrowSquareIcon } from "@/components/ArrowSquareIcon";
 import { ContactTrigger } from "@/components/ContactTrigger";
 import { PhotoCredit } from "@/components/PhotoCredit";
 
@@ -10,7 +11,7 @@ const nav = [
   { label: "Services", href: "/key-services" },
   { label: "Industries", href: "/industries" },
   { label: "About", href: "/about" },
-  { label: "Client Core", href: "/services" },
+  { label: "Our Approach", href: "/our-approach" },
 ];
 
 const pills = [
@@ -231,8 +232,9 @@ export function ScrollStudio() {
             <p className="font-[family-name:var(--font-display)] text-[18px] leading-none font-semibold tracking-[-0.04em] text-[var(--color-dark-blue)] md:text-[22px]">
               AB
             </p>
-            <ContactTrigger className="pointer-events-auto inline-flex h-9 items-center rounded-full border border-[var(--color-dark-blue)]/15 bg-white/80 px-4 text-[11px] font-medium tracking-[0.08em] text-[var(--color-dark-blue)] uppercase backdrop-blur-sm">
-              Contact →
+            <ContactTrigger className="pointer-events-auto inline-flex h-9 items-center gap-1.5 rounded-full border border-[var(--color-dark-blue)]/15 bg-white/80 px-4 text-[11px] font-medium tracking-[0.08em] text-[var(--color-dark-blue)] uppercase backdrop-blur-sm">
+              Contact
+              <ArrowSquareIcon size={14} />
             </ContactTrigger>
           </div>
 

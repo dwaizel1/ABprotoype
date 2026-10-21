@@ -11,6 +11,7 @@ import {
   type FormEvent,
   type ReactNode,
 } from "react";
+import { ArrowSquareIcon } from "@/components/ArrowSquareIcon";
 
 type ContactDrawerContextValue = {
   open: boolean;
@@ -512,9 +513,10 @@ function ContactDrawer() {
 
                   <button
                     type="submit"
-                    className="btn btn-yellow mt-10 inline-flex h-[52px] w-fit items-center rounded-full px-8 text-[15px] font-medium"
+                    className="btn btn-yellow mt-10 inline-flex h-[52px] w-fit items-center gap-2.5 rounded-full px-8 text-[15px] font-medium"
                   >
-                    Send Message →
+                    Send Message
+                    <ArrowSquareIcon size={20} />
                   </button>
                 </form>
               )}

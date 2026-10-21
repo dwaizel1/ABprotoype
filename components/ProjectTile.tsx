@@ -16,6 +16,7 @@ export function ProjectTile({ project, aspect }: ProjectTileProps) {
           src={project.heroImage}
           alt=""
           className="transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+          style={{ objectPosition: project.heroPosition ?? "center" }}
         />
         <PhotoCredit src={project.heroImage} />
       </div>

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { geoAlbersUsa } from "d3-geo";
+import { ArrowSquareIcon } from "@/components/ArrowSquareIcon";
 import { useEffect, useMemo, useState } from "react";
 import {
   filterMapLocations,
@@ -225,9 +226,10 @@ function ProjectCard({
         {location.slug && (
           <Link
             href={`/work/${location.slug}`}
-            className="mt-2 inline-flex text-[12px] font-medium text-[var(--color-dark-blue)] transition-opacity hover:opacity-70"
+            className="mt-2 inline-flex items-center gap-1.5 text-[12px] font-medium text-[var(--color-dark-blue)] transition-opacity hover:opacity-70"
           >
-            View project →
+            View project
+            <ArrowSquareIcon size={15} />
           </Link>
         )}
       </div>

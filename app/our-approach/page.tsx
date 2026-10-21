@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { ArrowSquareIcon } from "@/components/ArrowSquareIcon";
+import { ProjectProcess } from "@/components/ProjectProcess";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 
@@ -22,7 +24,7 @@ const services = [
         heading: "Transparent Process",
         paragraphs: [
           "Every phase has documented gates so progress is measurable and surprises stay rare.",
-          "We keep the client core at the center of every coordination meeting and field decision.",
+          "We keep your goals at the center of every coordination meeting and field decision.",
         ],
       },
     ],
@@ -73,7 +75,7 @@ const services = [
   },
 ];
 
-export default function ServicesPage() {
+export default function OurApproachPage() {
   const [openId, setOpenId] = useState("02");
 
   return (
@@ -83,7 +85,7 @@ export default function ServicesPage() {
 
       <section className="page-pad pt-16 pb-12 md:pt-24 md:pb-16">
         <span className="inline-flex items-center rounded-[9px] bg-[var(--color-yellow)] px-3.5 py-1.5 text-[12px] font-medium tracking-[-0.6px] text-[var(--color-blue)]">
-          Our Approach to Success
+          How We Deliver
         </span>
         <h1
           className="mt-6 max-w-[952px] font-[family-name:var(--font-display)] text-white"
@@ -93,7 +95,7 @@ export default function ServicesPage() {
             letterSpacing: "-0.043em",
           }}
         >
-          <span className="font-bold">Client Core</span>{" "}
+          <span className="font-bold">Our Approach</span>{" "}
           <span className="font-normal">
             One goal: protect your vision, budget, and schedule.
           </span>
@@ -146,9 +148,7 @@ export default function ServicesPage() {
                         {service.title}
                       </span>
                     </div>
-                    <span className="shrink-0 text-2xl" aria-hidden>
-                      →
-                    </span>
+                    <ArrowSquareIcon size={30} strokeWidth={1.75} />
                   </button>
 
                   {isOpen && (
@@ -181,6 +181,17 @@ export default function ServicesPage() {
             );
           })}
         </ul>
+      </section>
+
+      <section className="bg-[#031229] text-white">
+        <div className="page-pad py-20 md:py-32">
+          <h2 className="type-h2 max-w-[760px]">
+            How we protect your project, phase by phase.
+          </h2>
+          <div className="mt-10 md:mt-14">
+            <ProjectProcess />
+          </div>
+        </div>
       </section>
 
       <SiteFooter />

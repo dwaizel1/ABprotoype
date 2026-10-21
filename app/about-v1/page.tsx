@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ArrowSquareIcon } from "@/components/ArrowSquareIcon";
 import { AwardsSection } from "@/components/AwardsSection";
-import { LogoMarquee, awardLogos } from "@/components/LogoMarquee";
+import { LogoMarquee } from "@/components/LogoMarquee";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { projects } from "@/lib/projects";
@@ -83,10 +84,10 @@ export default function AboutPage() {
           </p>
           <Link
             href="/work"
-            className="btn btn-primary mt-9 inline-flex size-[47px] items-center justify-center rounded-full"
+            className="btn mt-9 inline-flex size-[47px] items-center justify-center rounded-lg text-[var(--color-dark-blue)] hover:opacity-70"
             aria-label="View our work"
           >
-            →
+            <ArrowSquareIcon size={44} strokeWidth={1.5} />
           </Link>
 
           <ul className="mt-16 w-full">
@@ -101,9 +102,7 @@ export default function AboutPage() {
                     <span>{project.location}</span>
                     <span>{project.type}</span>
                   </div>
-                  <span className="shrink-0 transition group-hover:translate-x-1" aria-hidden>
-                    →
-                  </span>
+                  <ArrowSquareIcon size={20} className="transition group-hover:translate-x-1" />
                 </Link>
               </li>
             ))}
@@ -170,11 +169,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <LogoMarquee
-        label="Awards"
-        logos={awardLogos}
-        itemClassName="flex h-12 w-[132px] shrink-0 items-center justify-center md:h-16 md:w-[160px]"
-      />
+      <LogoMarquee variant="awards" />
 
       <AwardsSection />
 

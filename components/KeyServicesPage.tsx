@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { ArrowSquareIcon } from "@/components/ArrowSquareIcon";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import type { KeyService } from "@/lib/key-services";
@@ -39,7 +40,9 @@ export function KeyServicesPage({ services }: { services: KeyService[] }) {
                   aria-current={active ? "page" : undefined}
                 >
                   {item.title}
-                  {active ? " →" : ""}
+                  {active && (
+                    <ArrowSquareIcon size="0.9em" strokeWidth={1.75} className="ml-[0.3em] align-[-0.12em]" />
+                  )}
                 </button>
               );
             })}

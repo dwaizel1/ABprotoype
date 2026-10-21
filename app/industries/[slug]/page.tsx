@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ArrowSquareIcon } from "@/components/ArrowSquareIcon";
+import { PhotoCredit } from "@/components/PhotoCredit";
 import { ProjectCatalog } from "@/components/ProjectCatalog";
 import { ProjectTile } from "@/components/ProjectTile";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -49,6 +51,7 @@ export default async function IndustryPage({ params }: PageProps) {
           className="cover-media"
           style={{ objectPosition: industry.imagePosition ?? "center" }}
         />
+        <PhotoCredit src={industry.image} className="right-3 bottom-3" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-transparent to-transparent" />
         <div className="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-black/85 from-10% via-black/45 to-transparent" />
 
@@ -99,7 +102,7 @@ export default async function IndustryPage({ params }: PageProps) {
                   className="flex gap-3 text-[15px] leading-[1.5] text-[var(--color-dark-blue)]"
                 >
                   <span
-                    className="mt-2 size-1.5 shrink-0 rounded-full bg-[var(--color-yellow)] ring-1 ring-[var(--color-dark-blue)]"
+                    className="mt-2 size-1.5 shrink-0 rounded-full bg-[var(--color-blue)]"
                     aria-hidden
                   />
                   {focus}
@@ -119,9 +122,10 @@ export default async function IndustryPage({ params }: PageProps) {
             </h2>
             <Link
               href={workHref}
-              className="btn btn-outline inline-flex h-11 items-center rounded-full px-6 text-[15px] font-medium"
+              className="btn btn-outline inline-flex h-11 items-center gap-2.5 rounded-full px-6 text-[15px] font-medium"
             >
-              View all {industry.shortName} work &rarr;
+              View all {industry.shortName} work
+              <ArrowSquareIcon size={20} />
             </Link>
           </div>
 
@@ -158,15 +162,14 @@ export default async function IndustryPage({ params }: PageProps) {
                     className="transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                     style={{ objectPosition: other.imagePosition ?? "center" }}
                   />
+                  <PhotoCredit src={other.image} />
                 </div>
                 <p className="mt-4 flex items-center justify-between gap-4 text-[18px] font-medium text-[var(--color-dark-blue)]">
                   {other.name}
-                  <span
+                  <ArrowSquareIcon
+                    size={22}
                     className="transition-transform duration-200 group-hover:translate-x-1 motion-reduce:transition-none"
-                    aria-hidden
-                  >
-                    &rarr;
-                  </span>
+                  />
                 </p>
                 <p className="mt-1 text-[14px] leading-[1.5] text-[var(--color-dark-blue)]/65">
                   {other.summary}

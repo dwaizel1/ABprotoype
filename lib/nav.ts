@@ -26,5 +26,5 @@ export const primaryNav: NavItem[] = [
   },
   { label: "Key Services", href: "/key-services" },
   { label: "About Us", href: "/about" },
-  { label: "Client Core", href: "/services" },
+  { label: "Our Approach", href: "/our-approach" },
 ];

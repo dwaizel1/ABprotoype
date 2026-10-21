@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Project } from "@/lib/projects";
+import { ArrowSquareIcon } from "@/components/ArrowSquareIcon";
 import { PhotoCredit } from "@/components/PhotoCredit";
 
 type ProjectTemplateProps = {
@@ -11,7 +12,11 @@ export function ProjectTemplate({ project }: ProjectTemplateProps) {
     <article className="bg-[var(--color-cream)]">
       <div className="frame relative h-[280px] w-full bg-[#414141] md:h-[420px] lg:h-[558px]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={project.heroImage} alt="" />
+        <img
+          src={project.heroImage}
+          alt=""
+          style={{ objectPosition: project.heroPosition ?? "center" }}
+        />
         <PhotoCredit src={project.heroImage} />
       </div>
 
@@ -35,12 +40,12 @@ export function ProjectTemplate({ project }: ProjectTemplateProps) {
             ))}
           </div>
 
-          <div
-            className="mt-10 flex size-16 items-center justify-center rounded-full bg-[var(--color-dark-blue)] text-white"
-            aria-hidden
-          >
-            ↓
-          </div>
+          <ArrowSquareIcon
+            direction="down"
+            size={56}
+            strokeWidth={1.5}
+            className="mt-10 text-[var(--color-dark-blue)]"
+          />
         </div>
 
         <div className="flex flex-col gap-6">
@@ -85,9 +90,10 @@ export function ProjectTemplate({ project }: ProjectTemplateProps) {
       <div className="page-pad pb-16">
         <Link
           href="/work"
-          className="type-body-2 text-[var(--color-blue)] underline-offset-4 transition-opacity hover:opacity-70 hover:underline"
+          className="type-body-2 inline-flex items-center gap-2 text-[var(--color-blue)] underline-offset-4 transition-opacity hover:opacity-70 hover:underline"
         >
-          ← Back to Work
+          <ArrowSquareIcon direction="left" size={20} />
+          Back to Work
         </Link>
       </div>
 

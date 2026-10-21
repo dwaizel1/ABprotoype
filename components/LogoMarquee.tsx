@@ -23,18 +23,25 @@ export const awardLogos = [
 
 type LogoItem = { src: string; alt: string };
 
+const VARIANTS = {
+  partners: { label: "Partners", title: undefined, logos: LOGOS },
+  awards: { label: "Awards", title: "Our Awards", logos: awardLogos },
+} as const;
+
 type LogoMarqueeProps = {
+  variant?: keyof typeof VARIANTS;
   count?: number;
   label?: string;
+  title?: string;
   logos?: readonly LogoItem[];
-  itemClassName?: string;
 };
 
 export function LogoMarquee({
+  variant = "partners",
   count = CIRCLE_COUNT,
-  label = "Partners",
-  logos = LOGOS,
-  itemClassName = "flex h-7 w-[120px] shrink-0 items-center justify-center md:h-9 md:w-[150px]",
+  label = VARIANTS[variant].label,
+  title = VARIANTS[variant].title,
+  logos = VARIANTS[variant].logos,
 }: LogoMarqueeProps) {
   const baseLogos = Array.from(
     { length: Math.max(count, logos.length) },
@@ -44,24 +51,36 @@ export function LogoMarquee({
 
   return (
     <section
-      className="logo-marquee relative my-14 overflow-hidden bg-[var(--color-cream)] md:my-20"
-      aria-label={label}
+      className="logo-marquee my-14 overflow-hidden bg-[var(--color-cream)] md:my-20"
+      aria-label={title ?? label}
     >
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[var(--color-cream)] to-transparent md:w-24" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[var(--color-cream)] to-transparent md:w-24" />
+      {title ? (
+        <p className="page-pad type-eyebrow pb-6 text-[var(--color-dark-blue)]/60 md:pb-8">
+          {title}
+        </p>
+      ) : null}
 
-      <div className="logo-marquee__track flex w-max items-center gap-10 py-8 md:gap-14 md:py-10">
-        {track.map((logo, i) => (
-          <div key={`${logo.src}-${i}`} className={itemClassName}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={logo.src}
-              alt={logo.alt}
-              className="h-full w-auto object-contain opacity-65 grayscale"
-              loading="lazy"
-            />
-          </div>
-        ))}
+      <div className="relative">
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[var(--color-cream)] to-transparent md:w-24" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[var(--color-cream)] to-transparent md:w-24" />
+
+        {/* Item box is the logo's bounding box; global `img { height: auto }` means sizing must come from max-h/max-w. */}
+        <div className="logo-marquee__track flex w-max items-center gap-10 py-1.5 md:gap-14 md:py-2">
+          {track.map((logo, i) => (
+            <div
+              key={`${logo.src}-${i}`}
+              className="flex h-20 w-[120px] shrink-0 items-center justify-center md:h-[100px] md:w-[150px]"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={logo.src}
+                alt={logo.alt}
+                className="max-h-full max-w-full object-contain opacity-65 grayscale"
+                loading="lazy"
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

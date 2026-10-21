@@ -1,5 +1,6 @@
 "use client";
 
+import { ArrowSquareIcon } from "@/components/ArrowSquareIcon";
 import { useContactDrawer } from "@/components/ContactDrawer";
 
 export function CareersCta() {
@@ -18,11 +19,9 @@ export function CareersCta() {
         <button
           type="button"
           onClick={() => openContactAs("careers")}
-          className="btn btn-primary mt-8 inline-flex h-11 items-center gap-3 rounded-full pr-5 pl-1.5 text-[14px] font-medium"
+          className="btn btn-primary mt-8 inline-flex h-11 items-center gap-2.5 rounded-full pr-5 pl-3 text-[14px] font-medium"
         >
-          <span className="flex size-8 items-center justify-center rounded-full bg-white/15">
-            →
-          </span>
+          <ArrowSquareIcon size={22} strokeWidth={1.75} />
           View Careers
         </button>
       </div>

@@ -15,33 +15,13 @@ export const catalogGroups: CatalogGroup[] = [
     "category": "National parks and historic sites",
     "projects": [
       {
-        "title": "Correct Critical Hazards and Rehab The Ahwahnee Hotel",
-        "description": "Yosemite NP · National Historic Landmark",
-        "type": "Federal"
-      },
-      {
         "title": "Rehabilitate Curry Village Cabins, Phases 1 and 3",
-        "description": "Yosemite NP",
-        "type": "Federal"
-      },
-      {
-        "title": "Rehab Ansel Adams Gallery, Buildings 902 & 904",
         "description": "Yosemite NP",
         "type": "Federal"
       },
       {
         "title": "Yosemite Administration Building",
         "description": "Yosemite Village",
-        "type": "Federal"
-      },
-      {
-        "title": "Repair Historic Kennecott Mine Structures and Utilities",
-        "description": "Wrangell–St. Elias NP, Alaska",
-        "type": "Federal"
-      },
-      {
-        "title": "USS Maine Memorial Restoration",
-        "description": "Arlington National Cemetery",
         "type": "Federal"
       },
       {
@@ -155,11 +135,6 @@ export const catalogGroups: CatalogGroup[] = [
         "type": "Commercial"
       },
       {
-        "title": "New Cuyama Fire Station",
-        "description": "County of Santa Barbara · joint fire and sheriff station",
-        "type": "Municipal"
-      },
-      {
         "title": "UCSB San Clemente Villages renovation · Artificial Flume Facility B.7950",
         "description": "UC Regents, Santa Barbara",
         "type": "Municipal"
@@ -172,11 +147,6 @@ export const catalogGroups: CatalogGroup[] = [
       {
         "title": "SLO Promenade Demolition and Shell",
         "description": "Madonna Road, San Luis Obispo",
-        "type": "Commercial"
-      },
-      {
-        "title": "Harris Administration Building",
-        "description": "1025 Farmhouse Lane, San Luis Obispo",
         "type": "Commercial"
       },
       {

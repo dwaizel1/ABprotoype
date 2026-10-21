@@ -37,7 +37,7 @@ export const industries: Industry[] = [
     workFilter: "Federal",
     workTypes: ["Federal"],
     image: "/images/industries/federal.jpg",
-    imagePosition: "center 42%",
+    imagePosition: "48% 50%",
   },
   {
     id: "02",
@@ -79,7 +79,7 @@ export const industries: Industry[] = [
     workFilter: "Municipal",
     workTypes: ["Municipal"],
     image: "/images/industries/municipal.jpg",
-    imagePosition: "55% 45%",
+    imagePosition: "62% 62%",
   },
   {
     id: "04",

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { ArrowSquareIcon } from "@/components/ArrowSquareIcon";
 import { useContactDrawer } from "@/components/ContactDrawer";
 import { primaryNav } from "@/lib/nav";
 
@@ -23,9 +24,10 @@ export function SiteFooter({ showCta = true }: SiteFooterProps) {
           <button
             type="button"
             onClick={openContact}
-            className="btn btn-primary inline-flex h-[56px] shrink-0 items-center justify-center rounded-full px-8 type-body-2"
+            className="btn btn-primary inline-flex h-[56px] shrink-0 items-center justify-center gap-2.5 rounded-full px-8 type-body-2"
           >
-            Contact Us →
+            Contact Us
+            <ArrowSquareIcon size={20} />
           </button>
         </div>
       )}

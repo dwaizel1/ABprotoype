@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type KeyboardEvent } from "react";
+import { ArrowSquareIcon } from "@/components/ArrowSquareIcon";
 
 type Slide = {
   label: string;
@@ -16,9 +17,9 @@ const slides: Slide[] = [
     label: "Employee-owned since 2021",
     title: "Ownership",
     body: "Through our ESOP, every member of the team is an owner. When your project succeeds, so do we, and you can see it in how our people show up every day.",
-    image: "/images/about/hero.jpg",
-    alt: "Anderson Burton team standing outside the Arroyo Grande office",
-    objectPosition: "center 30%",
+    image: "/images/about/team-group.jpg",
+    alt: "Anderson Burton team gathered outside the Arroyo Grande office",
+    objectPosition: "center 40%",
   },
   {
     label: "0.55 EMR",
@@ -48,26 +49,6 @@ const slides: Slide[] = [
 
 const pad = (n: number) => String(n).padStart(2, "0");
 
-function Arrow({ direction }: { direction: "prev" | "next" }) {
-  return (
-    <svg
-      width="20"
-      height="20"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.75"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden
-      className={direction === "prev" ? "rotate-180" : undefined}
-    >
-      <path d="M5 12h14" />
-      <path d="m13 6 6 6-6 6" />
-    </svg>
-  );
-}
-
 export function ValuesSpotlight() {
   const [index, setIndex] = useState(0);
   const count = slides.length;
@@ -85,7 +66,7 @@ export function ValuesSpotlight() {
   };
 
   const arrowClass =
-    "btn btn-outline flex size-11 shrink-0 items-center justify-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-dark-blue)]";
+    "btn flex size-11 shrink-0 items-center justify-center rounded-lg text-[var(--color-dark-blue)] hover:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-dark-blue)]";
 
   return (
     <section
@@ -168,7 +149,7 @@ export function ValuesSpotlight() {
                 onClick={() => go(-1)}
                 aria-label="Previous value"
               >
-                <Arrow direction="prev" />
+                <ArrowSquareIcon direction="left" size={32} strokeWidth={1.75} />
               </button>
               <button
                 type="button"
@@ -176,7 +157,7 @@ export function ValuesSpotlight() {
                 onClick={() => go(1)}
                 aria-label="Next value"
               >
-                <Arrow direction="next" />
+                <ArrowSquareIcon direction="right" size={32} strokeWidth={1.75} />
               </button>
             </div>
           </div>

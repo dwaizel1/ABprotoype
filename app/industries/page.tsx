@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ArrowSquareIcon } from "@/components/ArrowSquareIcon";
 import { PhotoCredit } from "@/components/PhotoCredit";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -136,12 +137,10 @@ export default function IndustriesPage() {
                                 {project.location}
                               </span>
                             </span>
-                            <span
-                              className="shrink-0 transition group-hover:translate-x-1"
-                              aria-hidden
-                            >
-                              →
-                            </span>
+                            <ArrowSquareIcon
+                              size={20}
+                              className="transition group-hover:translate-x-1"
+                            />
                           </Link>
                         </li>
                       ))}
@@ -152,9 +151,10 @@ export default function IndustriesPage() {
                 <div className="mt-10 flex flex-wrap gap-3">
                   <Link
                     href={`/industries/${industry.slug}`}
-                    className="btn btn-primary inline-flex h-[52px] items-center rounded-full px-7 text-[15px] font-medium"
+                    className="btn btn-primary inline-flex h-[52px] items-center gap-2.5 rounded-full px-7 text-[15px] font-medium"
                   >
-                    Explore {industry.shortName} →
+                    Explore {industry.shortName}
+                    <ArrowSquareIcon size={20} />
                   </Link>
                   <Link
                     href={`/work?type=${encodeURIComponent(industry.workFilter)}`}

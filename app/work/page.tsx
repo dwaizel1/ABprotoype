@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { Suspense, useState } from "react";
+import { ArrowSquareIcon } from "@/components/ArrowSquareIcon";
 import { AwardsSection } from "@/components/AwardsSection";
-import { LogoMarquee, awardLogos } from "@/components/LogoMarquee";
+import { LogoMarquee } from "@/components/LogoMarquee";
 import { PhotoCredit } from "@/components/PhotoCredit";
 import { ProjectCatalog } from "@/components/ProjectCatalog";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -86,6 +87,7 @@ function WorkPageContent() {
                     src={project.heroImage}
                     alt=""
                     className="transition duration-500 group-hover:scale-105"
+                    style={{ objectPosition: project.heroPosition ?? "center" }}
                   />
                   <span className="absolute left-4 top-4 z-10 rounded-[12px] bg-white/70 px-4 py-2 text-[11px] font-semibold tracking-tight text-[var(--color-dark-blue)] backdrop-blur-md">
                     {project.type}
@@ -118,12 +120,10 @@ function WorkPageContent() {
                   <span className="type-body-2 text-[var(--color-navy-ink)]">
                     {project.type}
                   </span>
-                  <span
+                  <ArrowSquareIcon
+                    size={20}
                     className="text-[var(--color-navy-ink)] transition group-hover:translate-x-1"
-                    aria-hidden
-                  >
-                    →
-                  </span>
+                  />
                 </Link>
               </li>
             ))}
@@ -133,11 +133,7 @@ function WorkPageContent() {
 
       <ProjectCatalog filter={activeFilter} />
 
-      <LogoMarquee
-        label="Awards"
-        logos={awardLogos}
-        itemClassName="flex h-12 w-[132px] shrink-0 items-center justify-center md:h-16 md:w-[160px]"
-      />
+      <LogoMarquee variant="awards" />
 
       <AwardsSection />
     </>

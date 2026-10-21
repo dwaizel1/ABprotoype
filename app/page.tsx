@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { ArrowSquareIcon } from "@/components/ArrowSquareIcon";
 import { ImpactMap } from "@/components/ImpactMap";
 import { LogoMarquee } from "@/components/LogoMarquee";
 import { PhotoCredit } from "@/components/PhotoCredit";
@@ -122,12 +123,11 @@ export default function HomePage() {
                   Anderson Burton delivers LEED Platinum at Pinnacles National
                   Park
                 </p>
-                <span
-                  className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/35 text-white transition group-hover:border-white group-hover:bg-white group-hover:text-[var(--color-dark-blue)]"
-                  aria-hidden
-                >
-                  →
-                </span>
+                <ArrowSquareIcon
+                  size={36}
+                  strokeWidth={1.5}
+                  className="text-white/75 transition group-hover:translate-x-1 group-hover:text-white motion-reduce:transition-none"
+                />
               </div>
             </Link>
           </div>
@@ -188,12 +188,10 @@ export default function HomePage() {
                       >
                         Learn more
                         <span className="sr-only"> about {ind.name}</span>
-                        <span
+                        <ArrowSquareIcon
+                          size={18}
                           className="transition-transform duration-200 group-hover/learn:translate-x-1 motion-reduce:transition-none"
-                          aria-hidden
-                        >
-                          →
-                        </span>
+                        />
                       </Link>
                     )}
                   </li>

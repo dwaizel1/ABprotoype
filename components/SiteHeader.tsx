@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useId, useState } from "react";
+import { ArrowSquareIcon } from "@/components/ArrowSquareIcon";
 import { useContactDrawer } from "@/components/ContactDrawer";
 import { primaryNav, type NavItem } from "@/lib/nav";
 
@@ -238,12 +239,10 @@ function NavDropdown({ item, active, pathname }: NavDropdownProps) {
                         </span>
                       )}
                     </span>
-                    <span
-                      className="shrink-0 text-[var(--color-dark-blue)]/40 transition group-hover:translate-x-0.5 group-hover:text-[var(--color-dark-blue)] motion-reduce:transition-none"
-                      aria-hidden
-                    >
-                      &rarr;
-                    </span>
+                    <ArrowSquareIcon
+                      size={18}
+                      className="text-[var(--color-dark-blue)]/40 transition group-hover:translate-x-0.5 group-hover:text-[var(--color-dark-blue)] motion-reduce:transition-none"
+                    />
                   </Link>
                 </li>
               );
@@ -255,7 +254,7 @@ function NavDropdown({ item, active, pathname }: NavDropdownProps) {
             onClick={() => setMenuOpen(false)}
           >
             {item.label} overview
-            <span aria-hidden>&rarr;</span>
+            <ArrowSquareIcon size={18} />
           </Link>
         </div>
       </div>
