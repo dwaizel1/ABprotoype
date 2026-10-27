@@ -16,7 +16,7 @@ type SiteHeaderProps = {
   variant?: "overlay" | "solid";
 };
 
-export function SiteHeader({ variant: _variant = "solid" }: SiteHeaderProps) {
+export function SiteHeader(_props: SiteHeaderProps) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const { openContact } = useContactDrawer();

@@ -247,9 +247,9 @@ export function ContactProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    if (window.location.hash === "#contact") {
-      setOpen(true);
-    }
+    if (window.location.hash !== "#contact") return;
+    const frame = window.requestAnimationFrame(() => setOpen(true));
+    return () => window.cancelAnimationFrame(frame);
   }, []);
 
   useEffect(() => {
@@ -286,6 +286,16 @@ function ContactDrawer() {
   const titleId = useId();
   const [audience, setAudience] = useState<Audience>("partners");
   const [values, setValues] = useState<Record<string, string>>({});
+  const [openedFor, setOpenedFor] = useState<Audience | null>(null);
+
+  const currentOpenedFor = open ? initialAudience : null;
+  if (openedFor !== currentOpenedFor) {
+    setOpenedFor(currentOpenedFor);
+    if (currentOpenedFor) {
+      setAudience(currentOpenedFor);
+      setValues({});
+    }
+  }
 
   const selected = useMemo(
     () => audienceOptions.find((o) => o.id === audience) ?? null,
@@ -300,12 +310,6 @@ function ContactDrawer() {
   const setValue = (key: string, value: string) => {
     setValues((prev) => ({ ...prev, [key]: value }));
   };
-
-  useEffect(() => {
-    if (!open) return;
-    setAudience(initialAudience);
-    setValues({});
-  }, [open, initialAudience]);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();

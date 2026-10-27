@@ -35,7 +35,7 @@ function project(lat: number, lng: number): { x: number; y: number } | null {
     y -= 10;
   }
 
-  return { x, y };
+  return { x: Math.round(x * 100) / 100, y: Math.round(y * 100) / 100 };
 }
 
 export function ImpactMap() {

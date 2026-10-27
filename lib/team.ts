@@ -40,7 +40,7 @@ export const currentTeam: CurrentTeamMember[] = [
   { slug: "robert-felix", name: "Robert Felix", role: "Operations Manager", photo: "/images/team/robert-felix.jpg" },
   { slug: "dave-van-mouwerik", name: "Dave Van Mouwerik", role: "Estimating Manager", photo: "/images/team/dave-van-mouwerik.jpg" },
   { slug: "reno-hawley", name: "Reno Hawley", role: "Senior Estimator", photo: "/images/team/reno-hawley.jpg" },
-  { slug: "luke-ferrell", name: "Luke Ferrell", role: "Senior Estimator" },
+  { slug: "luke-ferrell", name: "Luke Ferrell", role: "Senior Estimator", photo: "/images/team/luke-ferrell.jpg" },
   { slug: "cameron-reese", name: "Cameron Reese", role: "Project Manager", photo: "/images/team/cameron-reese.jpg" },
   { slug: "robert-villavicencio", name: "Robert Villavicencio", role: "Project Manager/Consultant", photo: "/images/team/robert-villavicencio.jpg" },
   { slug: "lauren-mahoney", name: "Lauren Mahoney", role: "Systems Administrator", photo: "/images/team/lauren-mahoney.jpg" },

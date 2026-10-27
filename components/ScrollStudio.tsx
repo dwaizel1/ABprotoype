@@ -304,7 +304,7 @@ export function ScrollStudio() {
                 <div className="mt-8 grid items-start gap-4 md:grid-cols-12 md:gap-5">
                   {chapter.cards.map((card, index) => (
                     <article
-                      key={card.title}
+                      key={`${card.kind}-${card.title}`}
                       className={index === 0 ? "md:col-span-5" : index === 1 ? "md:col-span-3" : "md:col-span-4"}
                     >
                       {card.kind === "graphic" ? (
